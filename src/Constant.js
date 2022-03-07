@@ -4,11 +4,12 @@
    2. Store the bakend api link within a constant and replace it with the magic constants used around the applications
    3. 
 */
+
 export const Paytype = [ "MCR", "COM" ];
 
 const LOCAL_URL = 'http://localhost:3000';
 
-const PRODUCTION_URL = 'http://ec2-54-147-53-219.compute-1.amazonaws.com:3000';
+const PRODUCTION_URL = process.env.REACT_APP_BACKEND_URL; // This link will decide where backend url is present at production
 
 export const BACKEND_URL = (process.env.NODE_ENV == 'development') ? LOCAL_URL : PRODUCTION_URL;
 
