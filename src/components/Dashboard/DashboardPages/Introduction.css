@@ -1,0 +1,33 @@
+.introduction h2{
+    font-size: 28px;
+}
+
+.introduction h3{
+    font-size: 22px;
+}
+.introduction p{
+    text-align: justify;
+}
+
+.introduction>.row{
+    padding: 10px;
+}
+.introduction>.row::after{
+    display: block;
+    content: " ";
+    width: 100px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: rgb(124, 124, 124);
+    margin: 25px auto;
+}
+
+.introduction .study-design-img{
+    width: 600px;
+}
+
+@media screen and (max-width: 610px){
+    .introduction .study-design-img{
+        width: 100%;
+    }
+}

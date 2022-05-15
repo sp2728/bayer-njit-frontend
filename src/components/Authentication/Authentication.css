@@ -1,99 +1,130 @@
-.container-fluid{
-    height: 100vh;
-    background-image: url('./backgroud_image.png');
-    background-size: cover;
-    display: flex;
-    justify-content: right;
-    align-items: center;
-    overflow-y: hidden;
-}
-
-/* .image_bg{
-    object-position: center;
-    object-fit:cover contain ;
-    max-width:100%;
-    max-height:100%;
-}
-
-.image{
-    width: 55%;
-    background-color: cornsilk;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.image h2{
-    font-style: italic;
-    color: seashell;
-    font-size: 45px;
-} */
-
-.logo{
-    font-size: larger;
-}
-
-.card{
-    max-width: 500px;
-    margin-right: 5em;
-    border-radius: 20px;
-    background-color: white;
-    padding: 1.5em;
-    text-align: center; 
-    box-shadow: 0px 2px 5px #888;
-}
-
-.card h2{
-    padding: 20px;
-}
-
-.btn-group{
-    border: none;
-    width: 500px;
-}
-
-.btn-group Button, .btn-group Button:hover{
-    border:none;
-}
-
-.btn-group .active, .btn-group Button:hover{
-    border-bottom: 3px solid royalblue;
-}
-
-.btn-group .active{
-    transition: 0.5s ease-in-out;
-}
-
-.auth-container{
-    margin: 30px 0;
-    height: 100%;
-}
-
-
-.card-footer{
-    margin-top:25px
-}
-
-.login-cls, .form-input{
+.authentication{
     width: 100%;
+    overflow: hidden;
+}
+nav{
+    transition: 1s background-color;
+    background-color: transparent;
+}
+.show-bg{
+    background-color: rgba(255, 255, 255, 0.90);
+    -webkit-box-shadow: 0px 9px 8px -3px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0px 9px 8px -3px rgba(0,0,0,0.25);
+    box-shadow: 0px 9px 8px -3px rgba(0,0,0,0.25);
+}
+.bg-container{
+    top: 0;
+    left: 0;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+.bg-right, .bg-left{
+    position: absolute;
+    height: 100%;
+    width: auto;
+}
+.bg-left{top:-3px; left: 0; height: 101%;}
+.bg-right{right: 0;}
+
+.nav-logo{
+    width: 100px;
+    height: 100px;
 }
 
-.form-input{
-    border: none;
+.h-lg-100vh{
+    height: 100vh;
 }
 
-.input {
-    color: 'white'
+.authentication .h1{
+    font-size: 50px;
+    font-style: italic;
+    word-spacing: 5px;
+    letter-spacing: 1px;
 }
 
-.form-group{
-    margin: 1.2em 0 1em 0;
+.title{
+    margin-top: 20%;
+    margin-left: 15%;
 }
 
+.border-slashes{
+  margin-top: 5%;
+  margin-left: 15%;
+  font-weight: bolder;
+}
 
-#register-message{
-    visibility: hidden;
-    color: red;
+.auth-content{
+    height: 100vh;
+}
+
+/* Right side */
+form {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+}
+form h2{
+    font-size: 30px;
+    text-align: left;
+    font-weight: 600;
+    padding-left: 20px;
+}
+form h2::after{
+    display: block;
+    margin: 20px auto 5px auto;
+    content: " ";
+    height: 2px;
+    width: 30%;
+    background-color: #ccc;
+}
+.form-container{
+    margin-top: 1%;
+}
+.auth-form .MuiTextField-root{
+    width: 80%;
+}
+.form-tabs{
+    background-color: #f5f6fae4;
+    text-align: center;
+    -webkit-box-shadow: 0px -8px 8px -4px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0px -8px 8px -4px rgba(0,0,0,0.25);
+    box-shadow: 0px -8px 8px -4px rgba(0,0,0,0.25);
+}
+.form-region{
+    background-color: #f5f6fae4;
+    -webkit-box-shadow: 8px 6px 8px -4px rgba(0,0,0,0.17);
+    -moz-box-shadow: 8px 6px 8px -4px rgba(0,0,0,0.17);
+    box-shadow: 8px 6px 8px -4px rgba(0,0,0,0.17);
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.form-tabs a, form a{
+    text-decoration: none;
+}
+.form-tabs a{
+    display: block;
+    padding: 10px 2px;
+    color: #999;
+}
+.form-tabs a.active{
+    color: black;
+    text-decoration: underline;
+}
+.form-region{overflow-y: auto; max-height: 500px}
+.form-region::-webkit-scrollbar {
+  width: 15px;               /* width of the entire scrollbar */
+}
+
+.form-region::-webkit-scrollbar-track {
+  background: rgb(196, 195, 195);        /* color of the tracking area */
+}
+
+.form-region::-webkit-scrollbar-thumb {
+  background-color: #bbdaebff;    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
 }
 
 #pwd-measure{
@@ -104,4 +135,88 @@
     margin-bottom: 15px;
     overflow: hidden;
     background-color: red;
+}
+
+.error-box{
+    background-color: red;
+    color: white;
+}
+.info-box{
+    background-color: blue;
+    color: white;
+}
+.success-box{
+    background-color: rgb(8, 130, 40);
+    color: white;
+}
+
+.form-region{
+    position: relative;
+}
+#form-info {
+    z-index: 1;
+    position:fixed;
+    top: 0;
+    right: 0;
+    width: 325px;
+    margin: 8px;
+    padding: 10px 0px;
+    text-align: center;
+    border-radius: 5px;
+    min-height: 50px;
+    font-size: 12px;
+}
+#form-info-icon{
+    font-size: 110%;
+}
+#form-info-message{
+    display: inline;
+    margin-left: 8px;
+    font-size: 100%;
+}
+
+@media only screen and (max-width: 1198.98px) {
+    .authentication .title{
+        margin-top: 30%;
+    }
+    .authentication .title>*{
+        font-size: 30px;
+    }
+}
+
+@media only screen and (max-width: 991.98px) {
+    
+    .authentication .title{
+        margin-top: 15%;
+    }
+    .h-lg-100vh{
+        height: auto;
+    }
+    .authentication .title>*{
+        font-size: 24px;
+    }
+    .nav-logo {
+        width: 75px;
+        height: 75px;
+    }
+    .border-slashes{
+        margin: auto;
+        text-align: center;
+    }
+    form h2{
+        font-size: 22px;
+    }
+    .auth-form .MuiTextField-root{
+        width: 90%;
+    }
+}
+@media only screen and (max-width: 480px){
+    .form-region{
+        max-height: 300px;
+    }
+}
+@media only screen and (max-height: 480px){
+    .auth-content{
+        height: 100%;
+    }
 }
