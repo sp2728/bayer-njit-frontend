@@ -6,6 +6,8 @@ import './Dashboard.css';
 import { Introduction } from "./DashboardPages/Introduction";
 import { PatientFinder } from "./DashboardPages/PatientFinder";
 import { Footer } from "../Common/CommonComponent";
+import Cookies from "js-cookie";
+import { checkUserAccess } from "../../api/ckdAPI";
 
 const navigationLinks = [{
     title: "Introduction",
@@ -25,7 +27,7 @@ const linkToNavTitleMapping = {};
 navigationLinks.map((e)=>{return (linkToNavTitleMapping[e.link] = e.title);})
 
 /** Renders Dashboard's first row of navigation bar */
-const FirstNavRow = () => {
+const FirstNavRow = (props) => {
 
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
@@ -39,7 +41,16 @@ const FirstNavRow = () => {
     };
 
     const logoutFn = () => {
-        //dispatch(logout());
+
+        /* TODO: Logout from backend API too HERE ... */
+
+
+        Cookies.remove("userid",{path:'/'});
+        Cookies.remove("fullName",{path:'/'});
+        Cookies.remove("email",{path:'/'});
+        Cookies.remove("authToken",{path:'/'});
+
+        props.logoutRerender();
     }
 
     const location = useLocation();
@@ -65,7 +76,7 @@ const FirstNavRow = () => {
                 <h1 style={{display: "inline-block", marginLeft: "10px", paddingTop: "8px"}}>CKD Population Navigator</h1>
             </div>
             <div className="col-5 col-md-6 col-lg-5 px-1 px-md-3 text-end">
-                <p className="user-greetings" style={{display: "inline-block"}}>Hello {`Username`/* TODO : Replace this with cookie.fullName */},</p>
+                <p className="display-none-md user-greetings">Hello {Cookies.get("fullName")},</p>
                 <IconButton onClick={(e)=>{handleClick(e)}} size="small" sx={{ display: "inline-block" ,ml: 0 }}>
                     <Avatar sx={{ width: 32, height: 32 }}><i className="fas fa-user" aria-hidden="true"></i></Avatar>
                 </IconButton>
@@ -100,7 +111,7 @@ const FirstNavRow = () => {
                     transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                     anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                 >
-                    <Link to={`/user/${`username123` /* TODO : Replace this with username */}/profile`} style={{ textDecoration: 'none', color:'inherit' }}> <MenuItem> <Avatar sx={{ width: 20, height: 20 }}><i className="fas fa-user" aria-hidden="true"></i></Avatar> Profile : {`Username`/* TODO : Replace this with cookie.fullName */} </MenuItem> </Link>
+                    <Link to={`/user/${Cookies.get('userid')}/profile`} style={{ textDecoration: 'none', color:'inherit' }}> <MenuItem> <Avatar sx={{ width: 20, height: 20 }}><i className="fas fa-user" aria-hidden="true"></i></Avatar> Profile : {Cookies.get("userid")} </MenuItem> </Link>
                     <Divider />
                         <MenuItem onClick={showCreatePreference}><ListItemIcon><i className="fa fa-plus" aria-hidden="true"></i></ListItemIcon> Create Preference </MenuItem>
                         <MenuItem onClick={showViewPreference}><ListItemIcon> <i className="fa fa-wrench" aria-hidden="true"></i> </ListItemIcon> View Preferences</MenuItem>
@@ -117,13 +128,14 @@ const NavigationBar = (props)=>{
     
     return (
         <nav className="container-fluid">
-            <FirstNavRow />
+            <FirstNavRow logoutRerender={props.logoutRerender}/>
             
             {/* Dashboard Navigation Second Row */}
             <div style={{backgroundColor: "#f7f1e3"}} className="row nav-links animate__animated animate__fadeIn animate__delay-1s">
-                <div className="col-12 display-md-none nav-mobile-bar">
-                    <button style={{background:"none", outline:"none", border: "none", padding: "1px 30px 2px 30px"}} onClick={(e)=>{
+                <div className="col-12 display-md-none nav-mobile-bar p-1">
+                    <button id="nav-mobbar-btn" style={{transition: "transform 0.5s",background:"none", outline:"none", border: "none", padding: "1px 30px 2px 30px"}} onClick={(e)=>{
                         setIsNavToggleActive(!isNavToggleActive);
+                        document.getElementById('nav-mobbar-btn').style.transform = `rotate(${isNavToggleActive?0:180}deg)`;
                     }}>
                         <i className="fa fa-bars" aria-hidden="true"></i>
                     </button>
@@ -151,30 +163,78 @@ class Dashboard extends React.Component{
     
     constructor(props){
         super(props)
+        this.state = {
+            isLoading: true,
+            access: false,
+        }
+        this.checkAccess = this.checkAccess.bind(this);
+        this.logoutRerender = this.logoutRerender.bind(this);
+    }
+
+    checkAccess(){
+        checkUserAccess(Cookies.get('userid'), Cookies.get('authToken')).then((response)=>{
+            this.setState({access: response.data.access===1, isLoading:false})
+        }).catch((err)=>{
+            this.setState({access: false, isLoading:false})
+        });
+    }
+
+    logoutRerender(){
+        this.setState({
+            access: false,
+            isLoading: false,
+        });
     }
 
     render(){
-        return (
-            <div className="dashboard">
-                <NavigationBar />
-                <div style={{minHeight: "100vh"}}>
-                    <Switch>
-                        <Route exact path="/dashboard" component={Introduction} />
-                        <Route exact path="/dashboard/ckd" component={Introduction} />
-                        <Route exact path="/dashboard/ckd/intro" component={Introduction} />
-                        <Route exact path="/dashboard/ckd/patientfinder">
-                            <PatientFinder/>
-                        </Route>
-                        <Route exact path="/dashboard/ckd/population/overview">
-                            {/* PopulationOverview Component */}
-                        </Route>
-                        <Route exact path="/dashboard/ckd/medseq">
-                            {/* MedicationSequence Component */}
-                        </Route>
-                        <Route path="*"><Redirect to="/not-found" /></Route>
-                    </Switch>
+        if(this.state.isLoading){
+            this.checkAccess();
+            return (
+                <div className="container pt-5">
+                    <div className="row pt-5">
+                        <div className="col pt-5">
+                            <h1 style={{fontSize: "24px", fontFamily:"Montserrat, san-serif", fontWeight: 600}}>Bayer CKD Population Navigator</h1>
+                            <p>Verifying your login credential. You are going to be redirected automatically in few seconds. If you are not <Link to="/dashboard">Click here</Link>.</p>
+                        </div>
+                    </div>
                 </div>
-                <Footer/>
+            )
+        } else if(!this.state.isLoading && this.state.access){
+            return (
+                <div className="dashboard">
+                    <NavigationBar logoutRerender={this.logoutRerender} />
+                    <div style={{minHeight: "100vh"}}>
+                        <Switch>
+                            
+                            <Route exact path="/dashboard" component={Introduction} />
+                            <Route exact path="/dashboard/ckd" component={Introduction} />
+                            <Route exact path="/dashboard/ckd/intro" component={Introduction} />
+                            <Route exact path="/dashboard/ckd/patientfinder">
+                                <PatientFinder/>
+                            </Route>
+                            <Route exact path="/dashboard/ckd/population/overview">
+                                {/* PopulationOverview Component */}
+                            </Route>
+                            <Route exact path="/dashboard/ckd/medseq">
+                                {/* MedicationSequence Component */}
+                            </Route>
+                            <Route path="*"><Redirect to="/not-found" /></Route>
+                        </Switch>
+                    </div>
+                    <Footer/>
+                </div>
+            ); 
+        }
+
+        return (
+            <div className="container pt-5">
+                <div className="row pt-5">
+                    <div className="col pt-5">
+                        <h1 style={{fontSize: "24px", fontFamily:"Montserrat, san-serif", fontWeight: 600}}>Bayer CKD Population Navigator</h1>
+                        <p>Your login credential seem to be expired or you have enter to this page by mistake. You are going to be redirected automatically in few seconds. If you are not <Link to="/auth/login">Click here</Link>.</p>
+                    </div>
+                </div>
+                <Redirect to="/auth/login" />
             </div>
         );
     }

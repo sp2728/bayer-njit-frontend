@@ -8,9 +8,10 @@ nav{
 }
 .show-bg{
     background-color: rgba(255, 255, 255, 0.90);
-    -webkit-box-shadow: 0px 9px 8px -3px rgba(0,0,0,0.25);
-    -moz-box-shadow: 0px 9px 8px -3px rgba(0,0,0,0.25);
-    box-shadow: 0px 9px 8px -3px rgba(0,0,0,0.25);
+    -webkit-box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    -moz-box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    
 }
 .bg-container{
     top: 0;
@@ -94,9 +95,9 @@ form h2::after{
 }
 .form-region{
     background-color: #f5f6fae4;
-    -webkit-box-shadow: 8px 6px 8px -4px rgba(0,0,0,0.17);
-    -moz-box-shadow: 8px 6px 8px -4px rgba(0,0,0,0.17);
-    box-shadow: 8px 6px 8px -4px rgba(0,0,0,0.17);
+    -webkit-box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    -moz-box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
     border-top-right-radius: 10px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;

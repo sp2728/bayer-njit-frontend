@@ -1,0 +1,77 @@
+.tooltip{
+    background-color: beige;
+    width: 100px;
+    position: absolute;
+    font-weight: 500;
+    box-shadow: 0 0 7px grey;
+    border-radius: 5px;
+    padding:20px;
+}
+
+.graph-container{
+    height:400px;
+    padding: 10px;
+    background-color: white;
+    position: relative;
+    transform: scale(0.9);
+}
+
+
+.link {
+    fill: none;
+    stroke: #000;
+    stroke-opacity: .2;
+}.link:hover {
+    stroke-opacity: .5;
+}
+
+
+#geoAlberMap{
+    padding: 10px;
+    margin: 10px auto;
+    text-align: center;
+    background-color: rgb(64, 198, 255);
+    height: 500px; 
+}#geoAlberMap>*{transform: scale(0.80);}
+
+@media only screen and (max-width: 1240px){
+    #geoAlberMap>*{transform: scale(0.75);}
+}@media only screen and (max-width: 1180px){
+    #geoAlberMap>*{transform: scale(0.6);}
+    #geoAlberMap{
+        height: 350px;
+    }
+}@media only screen and (max-width: 991.98px){
+    #geoAlberMap>*{transform: scale(0.5);}
+    #geoAlberMap{
+        height: 300px;
+    }
+}@media only screen and (max-width: 980px){
+    #geoAlberMap>*{transform: scale(0.4);}
+    #geoAlberMap{
+        height: 300px;
+    }
+}@media only screen and (max-width: 841.98px){
+    #geoAlberMap>*{transform: scale(0.3);}
+    #geoAlberMap{
+        height: 250px;
+    }
+}@media only screen and (max-width: 765.98px){
+    #geoAlberMap>*{transform: scale(0.5);}
+    #geoAlberMap{
+        height: 300px;
+        padding-left: 30px;
+    }
+}@media only screen and (max-width: 641.98px){
+    #geoAlberMap>*{transform: scale(0.4 );}
+    #geoAlberMap{
+        height: 250px;
+        padding-left: 30px;
+    }
+}@media only screen and (max-width: 555.98px){
+    #geoAlberMap>*{transform: scale(0.3 );}
+    #geoAlberMap{
+        height: 200px;
+        padding-left: 30px;
+    }
+}

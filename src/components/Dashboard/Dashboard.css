@@ -7,9 +7,9 @@
     position: fixed;
     color: white;
     background-color: white;
-    -webkit-box-shadow: 0px 9px 8px -3px rgba(0,0,0,0.25);
-    -moz-box-shadow: 0px 9px 8px -3px rgba(0,0,0,0.25);
-    box-shadow: 0px 9px 8px -3px rgba(0,0,0,0.25);
+    -webkit-box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    -moz-box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
 }
 
 #nav-logo{
@@ -48,6 +48,7 @@
 }
 .user-greetings{padding: 10px;}
 .display-md-none{display: none;}
+.display-none-md{display: inline-block;}
 .nav-mobile-bar{
     font-size: 25px;
     color: black;
@@ -69,6 +70,7 @@
 }
 
 @media screen and (max-width: 797.98px){
+    .display-none-md{display: none;}
     .nav-md-toggler{
         display: none;
     }

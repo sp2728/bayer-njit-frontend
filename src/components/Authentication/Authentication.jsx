@@ -5,7 +5,8 @@ import './Authentication.css';
 import { Route, Switch, Link, Redirect } from 'react-router-dom';
 import { Button, TextField, Checkbox } from '@mui/material';
 import {NavigationBar, Footer} from '../Common/CommonComponent';
-import { login, signup } from '../../api/ckdAPI';
+import { checkUserAccess, login, signup } from '../../api/ckdAPI';
+import Cookies from 'js-cookie';
 
 
 /** Renders complete background image related tasks */
@@ -38,12 +39,16 @@ const Login = (props)=>{
             if(response.data.success===1){ /* On Failure display error message */
                 props.setMessage(2, response.data.message);
 
-                // TODO: Store to response.data.userData to the cookie and redirect to dashboard
+                Cookies.set("userid", response.data.userData.userid,{path:'/'});
+                Cookies.set("fullName", response.data.userData.fullName,{path:'/'});
+                Cookies.set("email", response.data.userData.email,{path:'/'});
+                Cookies.set("authToken", response.data.userData.authToken,{path:'/'});
+
+                window.location.href = "/dashboard";
 
             } else{
                 props.setMessage(-1, response.data.message);
             }
-            /* TODO : Replace MessageStatus and Message Text with received message data or generic error message ...*/
             
         }).catch((error)=>{
 
@@ -163,6 +168,12 @@ class SignUp extends React.Component {
                 this.props.setMessage(2, response.data.message);
 
                 // TODO: Store response.data.userData to the cookie and redirect to dashboard
+                Cookies.set("userid", response.data.userData.userid,{path:'/'});
+                Cookies.set("fullName", response.data.userData.fullName,{path:'/'});
+                Cookies.set("email", response.data.userData.email,{path:'/'});
+                Cookies.set("authToken", response.data.userData.authToken,{path:'/'});
+
+                window.location.href = "/dashboard";
 
             } else{
                 this.props.setMessage(-1, response.data.message);
@@ -192,6 +203,7 @@ class SignUp extends React.Component {
     
 
     render(){
+
         return (
             <form onSubmit={this.signupCKDNavigator} className="container text-center auth-form mb-5" method='post'>
                 <div className="row mt-5">
@@ -382,10 +394,13 @@ class Authentication extends React.Component {
             isActive: (window.location.pathname==="/auth/signup")?1:0, /* isActive - for determining which tab is currently active (0: Login, 1: Signup) */
             messageState: 0, /* messageState: (0: No message, -1: errorMessage, 1: infoMessage, 2: successMessage) */
             messageText: "",
+            isLoading: true,
+            access: false,
         }
 
         this.setActiveFormTab = this.setActiveFormTab.bind(this);
         this.setMessage = this.setMessage.bind(this);
+        this.checkAccess = this.checkAccess.bind(this);
     }
 
     /** Set which one from Login and Signup form tab is active currently
@@ -414,7 +429,41 @@ class Authentication extends React.Component {
         setTimeout(()=>{this.setState({messageState: 0})}, 30000);
     }
 
+    checkAccess(){
+        checkUserAccess(Cookies.get('userid'), Cookies.get('authToken')).then((response)=>{
+            this.setState({access: response.data.access===1, isLoading:false})
+        }).catch((err)=>{
+            this.setState({access: false, isLoading:false})
+        });
+    }
+
     render(){
+        if(this.state.isLoading){
+            this.checkAccess();
+            return (
+                <div className="container pt-5">
+                    <div className="row pt-5">
+                        <div className="col pt-5">
+                            <h1 style={{fontSize: "24px", fontFamily:"Montserrat, san-serif", fontWeight: 600}}>Bayer CKD Population Navigator</h1>
+                            <p>Verifying your login credential. You are going to be redirected automatically in few seconds. If you are not <Link to="/dashboard">Click here</Link>.</p>
+                        </div>
+                    </div>
+                </div>
+            )
+        } else if(!this.state.isLoading && this.state.access){
+            return(
+                <div className="container pt-5">
+                    <div className="row pt-5">
+                        <div className="col pt-5">
+                            <h1 style={{fontSize: "24px", fontFamily:"Montserrat, san-serif", fontWeight: 600}}>Bayer CKD Population Navigator</h1>
+                            <p>Verifying your login credential. You are going to be redirected automatically in few seconds. If you are not <Link to="/dashboard">Click here</Link>.</p>
+                        </div>
+                        <Redirect to="/dashboard" />
+                    </div>
+                </div>
+            );
+        }
+
         return (
             <div className='authentication'>
                 <Background />
@@ -491,6 +540,7 @@ class Authentication extends React.Component {
                 <Footer />
             </div>
         );
+        
     }
 }
 
