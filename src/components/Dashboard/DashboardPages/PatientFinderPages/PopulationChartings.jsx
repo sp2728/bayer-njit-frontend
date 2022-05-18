@@ -129,7 +129,7 @@ export class PopulationChartings extends React.Component{
         getStateWisePatientData(Cookies.get('userid'), Cookies.get('authToken'), this.props.formFilterObj, getAcronymFromStateName(stateName)).then((response)=>{
             if(response.data.success===1){
                 this.setState({statewisePatientData: response.data.data},()=>{
-                    document.getElementById("patient-data-show-link").scrollIntoView();
+                    document.getElementById("patient-data-show").scrollIntoView();
                 });
             }else{
                 this.props.setMessage(-1, `Technical issue face on fetching the patient data specific to ${stateName}`)    
