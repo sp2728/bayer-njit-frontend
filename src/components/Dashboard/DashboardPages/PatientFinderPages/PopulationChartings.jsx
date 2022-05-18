@@ -33,13 +33,18 @@ const USMapCard = (props)=>{
                         {
                             (Object.keys(props.stateData).length)?(
                                 <div className="container-fluid text-center" style={{height: "100%"}}>
-                                    <div className="row" style={{display: "flex", height:"50%", alignItems: "center"}}>
+                                    <div className="row" style={{display: "flex", height:"45%", alignItems: "center"}}>
                                         <div className="col-12">
                                             <p>Min Patient Count</p>
                                             <p className='display-1'>{props.minCount}</p>
                                         </div>
                                     </div>
-                                    <div className="row" style={{display: "flex", height:"50%", alignItems: "center"}}>
+                                    <div className="row">
+                                        <div className="col-12">
+                                            <div className='hr-line'></div>
+                                        </div>
+                                    </div>
+                                    <div className="row" style={{display: "flex", height:"45%", alignItems: "center"}}>
                                         <div className="col-12">
                                             <p>Max Patient Count</p>
                                             <p className='display-1'>{props.maxCount}</p>
@@ -104,6 +109,20 @@ export class PopulationChartings extends React.Component{
             selectAllMedicalLabels: false,
         }
         this.viewPatientInUSState = this.viewPatientInUSState.bind(this);
+        this.compareList = this.compareList.bind(this);
+    }
+
+    compareList(arr1, arr2){
+        if(arr1.length === arr2.length){
+            for(let i=0;i<arr1.length;i++){
+                if(!arr2.includes(arr1[i])){
+                    return false
+                }
+            }
+        }else{
+            return false
+        }
+        return true;
     }
 
     viewPatientInUSState(stateName){
@@ -116,7 +135,6 @@ export class PopulationChartings extends React.Component{
                 this.props.setMessage(-1, `Technical issue face on fetching the patient data specific to ${stateName}`)    
             }
         }).catch(err=>{
-            console.log(err);
             this.props.setMessage(-1, `Technical issue face on fetching the patient data specific to ${stateName}`)
         });
     }
@@ -169,33 +187,23 @@ export class PopulationChartings extends React.Component{
                                                 name: e.label,
                                                 label_type: e.label_type
                                             })))}
-                                            value={((this.state.selectAllTreatmentLabels)?[{label:"Select all", value:"all"}].concat(this.props.treatmentChartLabels.map(e=>({
+                                            value={this.props.treatmentChartSelectedLabels.map(e=>({
                                                 label: e.name,
                                                 value: e.label_val,
                                                 name: e.label,
                                                 label_type: e.label_type
-                                            }))):this.props.treatmentChartSelectedLabels.map(e=>({
-                                                label: e.name,
-                                                value: e.label_val,
-                                                name: e.label,
-                                                label_type: e.label_type
-                                            })))}
+                                            }))}
                                             onChange={(selectedOptions)=>{
-                                                if(!this.state.selectAllTreatmentLabels && selectedOptions.filter(e=>e.value==="all").length>0){
-                                                    this.setState({selectAllTreatmentLabels: true},()=>{
-                                                        this.props.setSelectedTreatmentLabels(this.props.treatmentChartLabels);
-                                                    });
-                                                }
-                                                else{
-                                                    this.setState({selectAllTreatmentLabels: false},()=>{
-                                                        this.props.setSelectedTreatmentLabels(selectedOptions.map(e=>({
+                                                this.props.setSelectedTreatmentLabels(
+                                                    (
+                                                        (selectedOptions.filter(e=>e.value==="all").length>0)?this.props.treatmentChartLabels:selectedOptions.map(e=>({
                                                             label: e.name,
                                                             name: e.label,
                                                             label_val: e.value,
                                                             label_type: e.label_type,
-                                                        })));
-                                                    });
-                                                }
+                                                        }))
+                                                    )
+                                                );
                                             }}
                                             hideSelectedOptions={false}
                                             closeMenuOnSelect={false}
@@ -247,33 +255,23 @@ export class PopulationChartings extends React.Component{
                                                 name: e.label,
                                                 label_type: e.label_type
                                             })))}
-                                            value={((this.state.selectAllMedicalLabels)?[{label:"Select all", value:"all"}].concat(this.props.medicalChartLabels.map(e=>({
+                                            value={this.props.medicalChartSelectedLabels.map(e=>({
                                                 label: e.name,
                                                 value: e.label_val,
                                                 name: e.label,
                                                 label_type: e.label_type
-                                            }))):this.props.medicalChartSelectedLabels.map(e=>({
-                                                label: e.name,
-                                                value: e.label_val,
-                                                name: e.label,
-                                                label_type: e.label_type
-                                            })))}
+                                            }))}
                                             onChange={(selectedOptions)=>{
-                                                if(!this.state.selectAllMedicalLabels && selectedOptions.filter(e=>e.value==="all").length>0){
-                                                    this.setState({selectAllMedicalLabels: true},()=>{
-                                                        this.props.setSelectedMedicalLabels(this.props.medicalChartLabels);
-                                                    });
-                                                }
-                                                else{
-                                                    this.setState({selectAllMedicalLabels: false},()=>{
-                                                        this.props.setSelectedMedicalLabels(selectedOptions.map(e=>({
+                                                this.props.setSelectedMedicalLabels(
+                                                    (
+                                                        (selectedOptions.filter(e=>e.value==="all").length>0)?this.props.medicalChartLabels:selectedOptions.map(e=>({
                                                             label: e.name,
                                                             name: e.label,
                                                             label_val: e.value,
                                                             label_type: e.label_type,
-                                                        })));
-                                                    });
-                                                }
+                                                        }))
+                                                    )
+                                                );
                                             }}
                                             hideSelectedOptions={false}
                                             closeMenuOnSelect={false}

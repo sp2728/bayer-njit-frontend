@@ -117,6 +117,8 @@ class SidePanel extends React.Component{
             selectedTreatmentORLabelData: new Set(),
             selectedTreatmentANDLabelData: new Set(),
 
+            isPreferenceSaveButtonActive: false,
+
             isUpdateButtonDisabled: true,
 
             labelError: false, /* For notifying API related errors ... */
@@ -199,7 +201,20 @@ class SidePanel extends React.Component{
     }
 
     showPreference(preferenceId){
-        this.setState({selectedPreference: preferenceId});
+        let preFilledStateLabels=new Set(), preFilledGroupByType="cohort", preFilledGroupBy=[]; 
+        if(this.state.selectedPreference && this.state.userPreferenceList.length>0){
+            let currentPreferences = this.state.userPreferenceList.filter(e=>{return e.id===this.state.defaultPreference})[0];
+            preFilledStateLabels = new Set(currentPreferences.jsonData.states);
+            preFilledGroupByType = currentPreferences.jsonData.group_condition.group_by;
+            preFilledGroupBy = currentPreferences.jsonData.group_condition.selection;
+            
+        }
+        this.setState({
+            selectedPreference: preferenceId,
+            selectedStateLabelData: preFilledStateLabels,
+            groupByType: preFilledGroupByType,
+            groupBy: preFilledGroupBy,
+        });
     }
 
 
@@ -220,7 +235,7 @@ class SidePanel extends React.Component{
                     if(this.state.groupBy.includes(e.target.value)){
                         this.setState({
                             groupBy: this.state.groupBy.filter((e)=>{
-                                return e!==value;
+                                return e!==value.toLowerCase();
                             })
                         }, ()=>{
                             this.setState({
@@ -234,7 +249,7 @@ class SidePanel extends React.Component{
                             });
                         });
                     }
-                }} type="checkbox" name="groupby" id={`ckd-${type}-${value}`} value={value} checked={this.state.groupBy.includes(value)} /> &nbsp;
+                }} type="checkbox" name="groupby" id={`ckd-${type}-${value}`} value={value.toLowerCase()} checked={this.state.groupBy.includes(value.toLowerCase())} /> &nbsp;
                 <label className="m-0" htmlFor={type}>{value}</label>
             </div>
         );
@@ -306,6 +321,18 @@ class SidePanel extends React.Component{
                                     }
                                     
                                 </select>
+                                <div style={{fontSize:"12px"}}>
+                                    <div className="py-1">
+                                        <button onClick={()=>{}} style={{color: "#0000dd", border:"none",background:"none"}}>
+                                            <i className="fa fa-floppy-o" aria-hidden="true"></i> &nbsp; Save Preverferences
+                                        </button>
+                                    </div>
+                                    <div className="py-1">
+                                        <button onClick={()=>{}} style={{color: "#0000dd", border:"none",background:"none"}}>
+                                            <i className="fa fa-plus" aria-hidden="true"></i> &nbsp; Add Preferences
+                                        </button>
+                                    </div>
+                                </div>
                                 <div className="hr-line"></div>
                             </div>
                         </div>
@@ -501,7 +528,7 @@ export class PatientFinder extends React.Component {
                 labelError: true
             },()=>{
                 this.showMessage(-1, "There seems to be a technical issue on medical/treatment labels from the server! Please hit refresh or try again later ...");
-                setTimeout(()=>{this.props.showMessage(0, "")},15000);
+                setTimeout(()=>{this.showMessage(0, "")},15000);
             });
         });
     }
