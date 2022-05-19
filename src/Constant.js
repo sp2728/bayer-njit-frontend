@@ -7,6 +7,6 @@
 
 const LOCAL_URL = 'http://localhost:3000';
 
-const PRODUCTION_URL = process.env.REACT_APP_BACKEND_URL; // This link will decide where backend url is present at production
+const PRODUCTION_URL = process.env.REACT_APP_BACKEND_URL; // 'process.env.REACT_APP_BACKEND_URL' will be overwritten in docker and get replaced with the backend URL at time of Docker RUN setup
 
 export const BACKEND_URL = (process.env.NODE_ENV == 'development') ? LOCAL_URL : PRODUCTION_URL;
