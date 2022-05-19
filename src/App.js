@@ -1,26 +1,28 @@
 import './App.css';
 import Authentication from './components/Authentication/Authentication';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import Layout from './components/Layout/Layout';
-import { Provider } from "react-redux";
-import store from "./store/index";
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { NotFound } from './components/NotFound';
+import Dashboard from './components/Dashboard/Dashboard';
 
+/** 
+ Main Application component 
+ @returns {JSX} Application object
+*/
 function App() {
+
   return (
     <div className="App">
-    <Provider store={store}>
-      <BrowserRouter>
+      <Router>
         <Switch>
-          <Route path="/login">
-            <Authentication />
-          </Route>
-          <Route path="/app">
-            <Layout/>
-          </Route>
-          <Redirect to="/login"/>
+
+          <Route path="/auth" component={Authentication} />
+          <Route exact path="/"><Redirect to="/auth/login"/></Route>
+          <Route path="/dashboard" component={Dashboard} />
+          
+          <Route path="*"><NotFound showNav={true}/></Route>
+          
         </Switch>
-      </BrowserRouter>
-      </Provider>
+      </Router>
     </div>
   );
 }

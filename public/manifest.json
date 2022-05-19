@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "CKD Population Navigator",
+  "name": "Bayer's CKD Population Navigator",
   "icons": [
     {
       "src": "favicon.ico",

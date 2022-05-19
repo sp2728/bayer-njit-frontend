@@ -1,0 +1,44 @@
+.chart-card{
+    width: 100%;
+    min-height: 50px;
+    background-color: #e9edf6;
+    -webkit-box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    -moz-box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    margin: 5px 1px;
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+
+.chart-card h3{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    margin: 10px 0px 0px;
+}
+
+.chart-body {
+    background-color: white;
+    -webkit-box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    -moz-box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+}
+
+.chart-card::-webkit-scrollbar{
+    width: 15px;
+}
+
+.chart-card::-webkit-scrollbar-track{
+    background: rgb(54, 54, 54);
+    margin-top: 15vh;
+    margin-bottom: 10px;
+    border-radius: 20px;
+}
+
+.chart-card::-webkit-scrollbar-thumb{
+    background-color: rgb(150, 156, 159);
+    border-radius: 20px;
+}
+.chart-body{
+    min-width: 500px;
+}

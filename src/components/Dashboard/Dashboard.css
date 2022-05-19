@@ -1,0 +1,113 @@
+.dashboard{
+    width: 100%;
+    overflow: hidden;
+    scroll-behavior: smooth;
+}
+.dashboard nav{
+    position: fixed;
+    color: white;
+    background-color: white;
+    -webkit-box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    -moz-box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+}
+
+#nav-logo{
+    position: relative;
+    top: -5px; 
+    display: inline-block;
+    width: 32px;
+    height: 32px; 
+    background-color: white;
+    border-radius: 50%;
+}
+
+.dashboard .nav-links{padding-top: 5px;}
+.dashboard .nav-links li{
+    list-style: none;
+    display: inline-block;
+    padding: 2px 18px;
+    padding-top: 5px;
+    font-size: 14px;
+}
+.dashboard .nav-links a{
+    text-decoration: none;
+    color: black;
+}
+.dashboard .nav-links a.active{
+    font-weight: bold;
+}
+.dashboard .nav-links a:hover{
+    color: rgb(68, 68, 68);
+    text-decoration: underline;
+}
+
+.dashboard nav h1{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 27px;
+}
+.user-greetings{padding: 10px;}
+.display-md-none{display: none;}
+.display-none-md{display: inline-block;}
+.nav-mobile-bar{
+    font-size: 25px;
+    color: black;
+    text-align: right;
+    padding: 1px 5px 5px 5px;
+    margin-right: 30px;
+}
+
+@media screen and (max-width: 848px){
+    .dashboard nav h1{
+        font-size: 17px;
+        margin-top: 5px;
+    }
+    #nav-logo{
+        width: 28px;
+        height: 28px;
+        top: 0.5px;
+    }
+}
+
+@media screen and (max-width: 797.98px){
+    .display-none-md{display: none;}
+    .nav-md-toggler{
+        display: none;
+    }
+    .nav-md-toggler.open{
+        display: block;
+    }
+    .display-md-none{
+        display: block;
+    }
+    .dashboard .nav-links li{
+        display: block;
+        padding: 5px 24px;  
+    }
+    .user-greetings{
+        padding-top: 20px;
+    }
+}
+
+@media screen and (max-width: 539.98px){
+    .dashboard nav h1{
+        font-size: 14px;
+    }
+
+    .user-greetings{
+        padding-bottom: 10px;
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 480px){
+    .dashboard nav h1{
+        font-size: 10px;
+        padding: 10px 0;
+    }
+
+    .user-greetings{
+        padding-top: 20px;
+        font-size: 10px;
+    }
+}

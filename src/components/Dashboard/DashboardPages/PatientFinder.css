@@ -1,0 +1,153 @@
+.side-panel{
+    padding-top: 125px;
+    height: 100vh;
+    position: absolute;
+    z-index: 1;
+    display: inline-block;
+    background-color: #ecf0f1;
+    width: 20%;
+    -webkit-box-shadow: 5px 6px 8px -3px rgba(0,0,0,0.25);
+    -moz-box-shadow: 5px 6px 8px -3px rgba(0,0,0,0.25);
+    box-shadow: 5px 6px 8px -3px rgba(0,0,0,0.25);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.display-area{
+    scroll-behavior: smooth;
+    padding-top: 175px;
+    position: absolute;
+    z-index: 0;
+    display: inline-block;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-left: 20%;
+    width: 80%;
+    background-color: white;
+}
+
+.display-area::-webkit-scrollbar, .side-panel::-webkit-scrollbar {
+    width: 15px;
+}
+
+.display-area::-webkit-scrollbar-track, .side-panel::-webkit-scrollbar-track {
+    background: rgb(54, 54, 54);
+    margin-top: 15vh;
+    margin-bottom: 10px;
+    border-radius: 20px;
+}
+
+.display-area::-webkit-scrollbar-thumb,.side-panel::-webkit-scrollbar-thumb {
+    background-color: rgb(150, 156, 159);
+    border-radius: 20px;
+}
+
+.side-panel h2{
+    font-size: 20px;
+    padding:0;
+    width: 100%;
+}
+.side-panel label{
+    margin-bottom: 5px;
+    margin-top: 15px;
+    font-size: 14px;
+}
+.side-panel label.checkbox-labels{
+    margin: 0;
+    width: 100%;
+    font-size: 16px;
+}
+.side-panel .MuiAccordionSummary-content{
+    margin: 0;
+}
+.side-panel select{
+    width: 100%;
+    border-radius: 5px;
+    padding: 5px 1px; 
+    font-size: 14px;
+}
+.hr-line{
+    display: block;
+    content: " ";
+    width: 100px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: rgb(124, 124, 124);
+    margin: 25px auto;
+}
+.display-lg-none{
+    display: none;
+}
+.side-mobbar-btn{
+    padding: 0px  30px;
+}
+
+@media screen and (max-width:1410px){
+    .sidebar-form, .side-panel-content{
+        padding: auto
+    }
+    .display-area{
+        width: 95%;
+        margin-left: 5%;
+    }
+    .side-mobbar-btn{
+        padding: 0;
+        text-align: center;
+        font-size: 25;
+    }
+    
+    .side-panel.open .sidebar-form{
+        padding: 0 50px
+    }
+    .side-panel-content.open{
+        padding: 0;
+    }
+    .side-panel-content.open>*.button-bar{
+        padding-left: 0;
+    }
+    .side-panel{
+        width: 60px;
+    }
+    .side-panel-content>*{
+        display: none;
+        visibility: hidden;
+    }
+    .side-panel.open{
+        width: 400px;
+    }
+    .side-panel-content.open>*{
+        display: block;
+        visibility: visible;
+        transition: visible 5s;
+    }
+    .side-panel-content>*.button-bar{
+        display: block;
+        visibility: visible;
+    }
+
+    .display-lg-none{
+        display:block;
+    }
+
+
+}
+@media screen and (max-width: 840px) {
+    .display-area{
+        width: 90%;
+        margin-left: 10%;
+    }
+}
+
+@media screen and (max-width:480px){
+    .side-panel{
+        width: 40px;
+    }
+    .side-panel.open{
+        width: 100%;
+    }
+    .sidebar-form, .side-panel-content{
+        padding: 10px;
+        font-size: 16px
+    }
+}
