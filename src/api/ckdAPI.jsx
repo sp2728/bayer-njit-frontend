@@ -91,6 +91,43 @@ export const getUserPreferences = async (userid, authToken) => {
     );
 }
 
+export const addUserPreferences = async (userid, authToken, saveName, jsonData, isSetDefault=false) => {
+    return (
+        await axios.post(backendURL+'/users/preferences',{
+                userid,
+                authToken,
+                saveName,
+                jsonData,
+                makeDefault: isSetDefault,
+        })
+    );
+}
+
+export const editUserPreferences = async (userid, authToken, preferenceId, saveName, jsonData, isSetDefault=false) => {
+    return (
+        await axios.put(backendURL+'/users/preferences',{
+            userid,
+            authToken,
+            preferenceId,
+            saveName,
+            jsonData,
+            makeDefault: isSetDefault,
+        })
+    );
+}
+
+export const deleteUserPreferences = async (userid, authToken, preferenceId) => {
+    return (
+        await axios.delete(backendURL+'/users/preferences',{
+            params: {
+                userid,
+                authToken,
+                preferenceId,
+            }
+        })
+    );
+}
+
 
 /* --- Chart Data --- */
 /**

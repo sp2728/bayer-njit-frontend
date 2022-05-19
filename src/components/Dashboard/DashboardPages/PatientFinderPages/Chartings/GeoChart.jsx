@@ -3,10 +3,10 @@ import * as d3 from 'd3';
 import { select } from 'd3';
 import mapData from './usState.json';
 import './GeoChart.css';
-import { getStateNameFromAcronym } from "../../../Common/CommonComponent";
+import { getStateNameFromAcronym } from "../../../../Common/CommonComponent";
 import { Button, Tooltip } from "@mui/material";
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
-import jsPDF from "jspdf";
+//import jsPDF from "jspdf";
 
 class GeoChart extends React.Component{
     

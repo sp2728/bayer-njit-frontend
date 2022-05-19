@@ -1,8 +1,7 @@
 import { NavigationBar, Footer} from "./Common/CommonComponent";
-import logo from './Common/bayer_logo.png';
 import { Link } from "react-router-dom";
 
-export const NotFound = (props)=>{
+export const UnderMaintainance = (props)=>{
     return (
         <div className="not-found">
             {(props.showNav)?<NavigationBar />:""}
@@ -11,18 +10,18 @@ export const NotFound = (props)=>{
                     <div className="col-12">
                         <div className="row pt-5 text-center">
                             <div className="col-12 mt-5 pt-5">
-                                <h2>404 Not Found</h2>
+                                <h2>Under Maintainance</h2>
                             </div>
                         </div>
                         <div className="row py-5 text-center">
                             <div className="col-12">
-                                <img style={(screen.width<769)?{width: "300px", height: "300px"}:{width: "150px", height: "150px"}} src={logo} alt="Bayer Logo" />
+                                <i style={(screen.width<769)?{fontSize:300}:{fontSize:150}} className="fas fa-cog" />
                             </div>
                         </div>
                         <div className="row text-center mb-5">
                             <div className="col-12">
                                 <p>Looks like you are lost in this Bayer space!</p>
-                                <p>No worries! There is alway an option to go {(props.isCustomTitle)?<Link to={props.link}>{props.linkTitle}</Link>:<Link to="/">Home</Link>}</p>
+                                <p>No worries! There is alway an option to get on {(props.isCustomTitle)?<Link to={props.link}>{props.linkTitle}</Link>:<Link to="/dashboard">Dashboard</Link>}</p>
                             </div>
                         </div>
                     </div>

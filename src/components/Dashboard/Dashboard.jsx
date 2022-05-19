@@ -8,6 +8,7 @@ import { PatientFinder } from "./DashboardPages/PatientFinder";
 import { Footer } from "../Common/CommonComponent";
 import Cookies from "js-cookie";
 import { checkUserAccess } from "../../api/ckdAPI";
+import { UnderMaintainance } from "../UnderMaintainance";
 
 const navigationLinks = [{
     title: "Introduction",
@@ -60,11 +61,10 @@ const FirstNavRow = (props) => {
     }
 
     const showCreatePreference = () => {
-        //dispatch(showModal({ messageType: constants.MESSAGE_TYPES.CREATE_PREFERENCE, action: 'open' }));
+        window.location.href="/dashboard/ckd/patientfinder/preferences/new";
     }
-
     const showViewPreference = () => {
-        //dispatch(showModal({ messageType: constants.MESSAGE_TYPES.VIEW_PREFERECNE, action: 'open' }));
+        window.location.href="/dashboard/ckd/patientfinder/preferences/view";
     }
 
     return (
@@ -113,8 +113,8 @@ const FirstNavRow = (props) => {
                 >
                     <Link to={`/user/${Cookies.get('userid')}/profile`} style={{ textDecoration: 'none', color:'inherit' }}> <MenuItem> <Avatar sx={{ width: 20, height: 20 }}><i className="fas fa-user" aria-hidden="true"></i></Avatar> Profile : {Cookies.get("userid")} </MenuItem> </Link>
                     <Divider />
-                        <MenuItem onClick={showCreatePreference}><ListItemIcon><i className="fa fa-plus" aria-hidden="true"></i></ListItemIcon> Create Preference </MenuItem>
-                        <MenuItem onClick={showViewPreference}><ListItemIcon> <i className="fa fa-wrench" aria-hidden="true"></i> </ListItemIcon> View Preferences</MenuItem>
+                        <MenuItem onClick={showViewPreference}><ListItemIcon> <i className="fa fa-wrench" aria-hidden="true"></i> </ListItemIcon> My Preferences</MenuItem>
+                        <MenuItem onClick={showCreatePreference}><ListItemIcon><i className="fa fa-plus" aria-hidden="true"></i></ListItemIcon> Create New Preference </MenuItem>
                     <Divider />
                     <MenuItem onClick={logoutFn}><ListItemIcon><i className="fa fa-sign-out" aria-hidden="true"></i></ListItemIcon> Logout </MenuItem>
                 </Menu>
@@ -209,16 +209,17 @@ class Dashboard extends React.Component{
                             <Route exact path="/dashboard" component={Introduction} />
                             <Route exact path="/dashboard/ckd" component={Introduction} />
                             <Route exact path="/dashboard/ckd/intro" component={Introduction} />
-                            <Route exact path="/dashboard/ckd/patientfinder">
-                                <PatientFinder/>
-                            </Route>
+                            <Route path="/dashboard/ckd/patientfinder" component={PatientFinder} />
                             <Route exact path="/dashboard/ckd/population/overview">
                                 {/* PopulationOverview Component */}
+                                <UnderMaintainance showNav={false} />
                             </Route>
                             <Route exact path="/dashboard/ckd/medseq">
                                 {/* MedicationSequence Component */}
+                                <UnderMaintainance showNav={false} />
                             </Route>
                             <Route path="*"><Redirect to="/not-found" /></Route>
+
                         </Switch>
                     </div>
                     <Footer/>

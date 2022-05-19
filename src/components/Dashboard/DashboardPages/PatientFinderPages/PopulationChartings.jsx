@@ -1,12 +1,11 @@
 import { FormGroup, FormLabel, Tooltip } from '@mui/material';
 import Cookies from 'js-cookie';
 import React from 'react';
-import { Link } from 'react-router-dom';
 import ReactSelect from 'react-select';
 import { getStateWisePatientData } from '../../../../api/ckdAPI';
 import { getAcronymFromStateName, getStateNameFromAcronym } from '../../../Common/CommonComponent';
-import GeoChart from './GeoChart';
-import Graph from './Graph';
+import GeoChart from './Chartings/GeoChart';
+import Graph from './Chartings/Graph';
 import './PopulationChartings.css';
 
 const USMapCard = (props)=>{

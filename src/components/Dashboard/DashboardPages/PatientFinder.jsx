@@ -1,13 +1,16 @@
 import { Accordion, AccordionDetails, AccordionSummary, Button, Checkbox, FormControlLabel, FormLabel, IconButton, Tooltip, Typography } from "@mui/material";
 import Cookies from "js-cookie";
 import React from "react";
-import { getLabels, getMedicalData, getStateLabels, getStatesData, getTreatmentsData, getUserPreferences } from "../../../api/ckdAPI";
+import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+import { editUserPreferences, getLabels, getMedicalData, getStateLabels, getStatesData, getTreatmentsData, getUserPreferences } from "../../../api/ckdAPI";
 import { getStateNameFromAcronym } from "../../Common/CommonComponent";
 import './PatientFinder.css';
 import { PopulationChartings } from "./PatientFinderPages/PopulationChartings";
+import {UserPreferences} from "./PatientFinderPages/UserPreferences/UserPreferences"
+import { NotFound } from "../../NotFound";
 
 /** Render Accordian (Slide-dropdown boxes) part of the Side-Panel menu of Patient Finder */
-class AccordianMenu extends React.Component {
+export class AccordianMenu extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -129,6 +132,8 @@ class SidePanel extends React.Component{
         this.getUserPreferenceIndexByPreferenceId = this.getUserPreferenceIndexByPreferenceId.bind(this);
         this.updateSelectedValueSet = this.updateSelectedValueSet.bind(this);
         this.sendFilterDataToGraph = this.sendFilterDataToGraph.bind(this);
+        this.refreshPreference=this.refreshPreference.bind(this);
+        this.savePreferences=this.savePreferences.bind(this);
     }
     
     componentDidMount(){
@@ -165,6 +170,11 @@ class SidePanel extends React.Component{
             });
         });
 
+        this.refreshPreference()
+
+    }
+
+    refreshPreference(){
         getUserPreferences(Cookies.get('userid'), Cookies.get('authToken')).then((response)=>{
             if(response.data.success===1){/* On Success read state data */
                 this.setState({
@@ -191,7 +201,6 @@ class SidePanel extends React.Component{
                 setTimeout(()=>{this.props.showMessage(0, "")},15000);
             });
         });
-
     }
 
     getUserPreferenceIndexByPreferenceId(preferenceId){
@@ -200,13 +209,56 @@ class SidePanel extends React.Component{
         }).indexOf(preferenceId);
     }
 
+    savePreferences(preferenceId){
+
+        if(preferenceId>0){
+            const preferenceData = this.state.userPreferenceList.filter(e=>e.id==preferenceId)[0]
+            editUserPreferences(Cookies.get('userid'), Cookies.get('authToken'), preferenceId, preferenceData.saveName, {
+                "group_condition": {
+                    "group_by": this.state.groupByType,
+                    "selection": this.state.groupBy,
+                },
+                "states": Array.from(this.state.selectedStateLabelData)
+            }, this.state.defaultPreference==preferenceId).then((response)=>{
+                if(response.data.success===1){/* On Success read state data */
+                    this.setState({
+                        labelError: false,
+                        userPreferenceList: this.state.userPreferenceList.filter(e=>e.id!=preferenceId).concat(response.data.data),
+                    })
+                } else {
+                    this.setState({
+                        labelError: true
+                    },()=>{
+                        this.props.showMessage(-1, "There seems to be a technical issue on retreiving state labels from the server! Please hit refresh or try again later ...");
+                        setTimeout(()=>{ this.props.showMessage(0, "")},15000);
+                    });
+                }
+            }).catch(err=>{
+                this.setState({
+                    labelError: true
+                },()=>{
+                    this.props.showMessage(-1, "There seems to be a technical issue on retreiving state labels from the server! Please hit refresh or try again later ...");
+                    setTimeout(()=>{this.props.showMessage(0, "")},15000);
+                });
+            });
+        }else{
+            this.props.showMessage(1, "Please create atleast one preference by '+ Create New Preferences'!");
+            setTimeout(()=>{this.props.showMessage(0, "")},15000);
+        }
+
+        
+    }
+
     showPreference(preferenceId){
         let preFilledStateLabels=new Set(), preFilledGroupByType="cohort", preFilledGroupBy=[]; 
-        if(this.state.selectedPreference && this.state.userPreferenceList.length>0){
-            let currentPreferences = this.state.userPreferenceList.filter(e=>{return e.id===this.state.defaultPreference})[0];
-            preFilledStateLabels = new Set(currentPreferences.jsonData.states);
-            preFilledGroupByType = currentPreferences.jsonData.group_condition.group_by;
-            preFilledGroupBy = currentPreferences.jsonData.group_condition.selection;
+        if(this.state.userPreferenceList.length>0){
+            let currentPreferences = this.state.userPreferenceList.filter(e=>{return e.id==preferenceId});
+            if(currentPreferences.length===0){
+                currentPreferences = this.state.userPreferenceList;
+            }
+            preFilledStateLabels = new Set(currentPreferences[0].jsonData.states);
+            preFilledGroupByType = currentPreferences[0].jsonData.group_condition.group_by;
+            preFilledGroupBy = currentPreferences[0].jsonData.group_condition.selection;
             
         }
         this.setState({
@@ -214,6 +266,10 @@ class SidePanel extends React.Component{
             selectedStateLabelData: preFilledStateLabels,
             groupByType: preFilledGroupByType,
             groupBy: preFilledGroupBy,
+        },()=>{
+            this.setState({
+                isUpdateButtonDisabled: this.state.selectedStateLabelData.size < 1 || this.state.groupBy.length < 1
+            })
         });
     }
 
@@ -307,11 +363,18 @@ class SidePanel extends React.Component{
                         {/* Preferences */}
                         <div className="row">
                             <div className="col">
-                                <label htmlFor="user-preference">
+                                <label htmlFor="user-preference" style={{width: "100%"}}>
                                     Preferences &nbsp;
                                     <Tooltip title="Select the preference that you want to be viewed in the graphs displayed on the right side.">
                                         <i className="fa fa-info-circle" aria-hidden="true"></i>
-                                    </Tooltip>
+                                    </Tooltip> &nbsp;
+                                    <div style={{display: "inline-block", float: "right"}}>
+                                        <Tooltip title="Refresh Preference list if you donot see any of your recently created/updated preference name">
+                                            <button style={{border: "none", fontSize:"13px"}} onClick={(e)=>{e.preventDefault(); this.refreshPreference()}}>
+                                                <small>Refresh</small> <i className="fa fa-refresh" aria-hidden="true"></i>
+                                            </button>
+                                        </Tooltip>
+                                    </div>
                                 </label>
                                 <select name="preference" id="user-preference" onChange={(e)=>{this.showPreference(e.target.value)}}>
                                     {
@@ -323,14 +386,21 @@ class SidePanel extends React.Component{
                                 </select>
                                 <div style={{fontSize:"12px"}}>
                                     <div className="py-1">
-                                        <button onClick={()=>{}} style={{color: "#0000dd", border:"none",background:"none"}}>
-                                            <i className="fa fa-floppy-o" aria-hidden="true"></i> &nbsp; Save Preverferences
+                                        <button type="button" onClick={()=>{
+                                                this.savePreferences(this.state.selectedPreference);
+                                            }} style={{color: "#0000dd", border:"none",background:"none"}}>
+                                            <i className="fa fa-floppy-o" aria-hidden="true"></i> &nbsp; Save Preferences &nbsp;
+                                            <Tooltip style={{color: "black"}} title="This will save any changes you made to the current preference. Note that this will not save the Treatment/Medical (AND/OR) condition">
+                                                <i className="fa fa-info-circle" aria-hidden="true"></i>
+                                            </Tooltip>
                                         </button>
                                     </div>
                                     <div className="py-1">
-                                        <button onClick={()=>{}} style={{color: "#0000dd", border:"none",background:"none"}}>
-                                            <i className="fa fa-plus" aria-hidden="true"></i> &nbsp; Add Preferences
-                                        </button>
+                                        <Link onClick={(e)=>{
+                                                e.preventDefault(); window.location.href=`/dashboard/ckd/patientfinder/preferences/new`;
+                                            }} style={{color: "#0000dd", border:"none",background:"none"}} to="/dashboard/ckd/patientfinder/preferences/new">
+                                            <i className="fa fa-plus" aria-hidden="true"></i> &nbsp; Create New Preferences
+                                        </Link>
                                     </div>
                                 </div>
                                 <div className="hr-line"></div>
@@ -627,30 +697,49 @@ export class PatientFinder extends React.Component {
                         </div>
 
                         {/* Graph display Area */}
-                        <div id="dash" className="display-area pb-2">
-                            <PopulationChartings setMessage={this.showMessage} treatmentChartLabels={this.state.treatmentChartLabels} medicalChartLabels={this.state.medicalChartLabels} 
-                                setSelectedMedicalLabels={(labels)=>{
-                                    this.setState({
-                                        medicalChartSelectedLabels: labels
-                                    },()=>{
-                                        if(Object.keys(this.state.formFilters).length>0){
-                                            this.updateGraph(this.state.formFilters);
-                                        }
-                                    })
-                                }}
-                                setSelectedTreatmentLabels={(labels)=>{
-                                    this.setState({
-                                        treatmentChartSelectedLabels: labels
-                                    },()=>{
-                                        if(Object.keys(this.state.formFilters).length>0){
-                                            this.updateGraph(this.state.formFilters);
-                                        }
-                                    })
-                                }}
-                                formFilterObj={this.state.formFilters}
-                                medicalChartSelectedLabels={this.state.medicalChartSelectedLabels} treatmentChartSelectedLabels={this.state.treatmentChartSelectedLabels}
-                                medicalChartData={this.state.medicalChartData} treatmentsChartData={this.state.treatmentChartData} stateData={this.state.stateData} 
-                                minPatientCount={(Object.keys(this.state.stateData).length>0)?this.state.stateData.min:0} maxPatientCount={(Object.keys(this.state.stateData).length>0)?this.state.stateData.max:0}/>
+                        <div id="dash" className="display-area ">
+                            <Router>
+                                <Switch>
+                                    <Route exact path="/dashboard/ckd/patientfinder/preferences/new">
+                                        <UserPreferences showMessage={this.showMessage} pageType={'create'}/>
+                                    </Route>
+                                    <Route exact path="/dashboard/ckd/patientfinder/preferences/edit">
+                                        <UserPreferences showMessage={this.showMessage} pageType={'edit'}/>
+                                    </Route>
+                                    <Route exact path="/dashboard/ckd/patientfinder/preferences/view">
+                                        <UserPreferences showMessage={this.showMessage} pageType={'view'}/>
+                                    </Route>
+                                    <Route exact path="/dashboard/ckd/patientfinder/preferences">
+                                        <UserPreferences showMessage={this.showMessage} pageType={'view'}/>
+                                    </Route>
+                                    <Route exact path="/dashboard/ckd/patientfinder">
+                                        <PopulationChartings setMessage={this.showMessage} treatmentChartLabels={this.state.treatmentChartLabels} medicalChartLabels={this.state.medicalChartLabels} 
+                                            setSelectedMedicalLabels={(labels)=>{
+                                                this.setState({
+                                                    medicalChartSelectedLabels: labels
+                                                },()=>{
+                                                    if(Object.keys(this.state.formFilters).length>0){
+                                                        this.updateGraph(this.state.formFilters);
+                                                    }
+                                                })
+                                            }}
+                                            setSelectedTreatmentLabels={(labels)=>{
+                                                this.setState({
+                                                    treatmentChartSelectedLabels: labels
+                                                },()=>{
+                                                    if(Object.keys(this.state.formFilters).length>0){
+                                                        this.updateGraph(this.state.formFilters);
+                                                    }
+                                                })
+                                            }}
+                                            formFilterObj={this.state.formFilters}
+                                            medicalChartSelectedLabels={this.state.medicalChartSelectedLabels} treatmentChartSelectedLabels={this.state.treatmentChartSelectedLabels}
+                                            medicalChartData={this.state.medicalChartData} treatmentsChartData={this.state.treatmentChartData} stateData={this.state.stateData} 
+                                            minPatientCount={(Object.keys(this.state.stateData).length>0)?this.state.stateData.min:0} maxPatientCount={(Object.keys(this.state.stateData).length>0)?this.state.stateData.max:0}/>
+                                    </Route>
+                                    <Route path="*"><NotFound showNav={false} isCustomTitle={true} link="/dashboard/ckd/patientfinder" linkTitle="Patient Finder Page"/></Route>
+                                </Switch>
+                            </Router>
                         </div>
 
                         {/* Pop up Info box: Only visible on error or updates */}

@@ -3,11 +3,6 @@ import Authentication from './components/Authentication/Authentication';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { NotFound } from './components/NotFound';
 import Dashboard from './components/Dashboard/Dashboard';
-//import Layout from './components/Layout/Layout';
-
-//import { Provider } from "react-redux";
-//import store from "./store/index";
-
 
 /** 
  Main Application component 
@@ -24,7 +19,7 @@ function App() {
           <Route exact path="/"><Redirect to="/auth/login"/></Route>
           <Route path="/dashboard" component={Dashboard} />
           
-          <Route path="*" component={NotFound} />
+          <Route path="*"><NotFound showNav={true}/></Route>
           
         </Switch>
       </Router>
