@@ -1,6 +1,7 @@
 import axios from "axios";
+import { BACKEND_URL } from "../Constant";
 
-const backendURL = "http://localhost:3000";
+const backendURL = BACKEND_URL;
 
 
 /* ------------------------- System Authentication functionality --------------------------- */
