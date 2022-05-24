@@ -1,0 +1,7 @@
+.user-profile{
+    min-height: 100vh;
+    overflow: unset;
+}
+.user-profile .MuiTextField-root{
+    width: 90%;
+}

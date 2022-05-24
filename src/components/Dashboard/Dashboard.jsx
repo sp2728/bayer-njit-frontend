@@ -33,18 +33,13 @@ const FirstNavRow = (props) => {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
 
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
+    const handleClick = (event) => {setAnchorEl(event.currentTarget);};
 
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
+    const handleClose = () => {setAnchorEl(null);};
 
     const logoutFn = () => {
 
         /* TODO: Logout from backend API too HERE ... */
-
 
         Cookies.remove("userid",{path:'/'});
         Cookies.remove("fullName",{path:'/'});
@@ -54,18 +49,13 @@ const FirstNavRow = (props) => {
         props.logoutRerender();
     }
 
-    const location = useLocation();
-    const isActive = (route) => {
-        if (location.pathname === route) return 'menu-item btn-active';
-        return 'menu-item';
-    }
-
-    const showCreatePreference = () => {
-        window.location.href="/dashboard/ckd/patientfinder/preferences/new";
-    }
-    const showViewPreference = () => {
-        window.location.href="/dashboard/ckd/patientfinder/preferences/view";
-    }
+    //const location = useLocation();
+    // const isActive = (route) => {
+    //     if (location.pathname === route) return 'menu-item btn-active';
+    //     return 'menu-item';
+    // }
+    const showCreatePreference = () => {window.location.href="/dashboard/ckd/patientfinder/preferences/new";}
+    const showViewPreference = () => {window.location.href="/dashboard/ckd/patientfinder/preferences/view";}
 
     return (
         <div style={{backgroundColor: "rgb(35, 130, 181)"}} className="row animate__animated animate__fadeInDown animate__delay-1s">
@@ -123,7 +113,7 @@ const FirstNavRow = (props) => {
     );
 }
 
-const NavigationBar = (props)=>{
+export const NavigationBar = (props)=>{
     const [isNavToggleActive, setIsNavToggleActive] = useState(false);
     
     return (

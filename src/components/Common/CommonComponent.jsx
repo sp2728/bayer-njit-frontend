@@ -7,12 +7,16 @@ export class NavigationBar extends React.Component{
     constructor(props){
         super(props);
         window.addEventListener("scroll", function(){
-            if(window.scrollY>10){
-                document.getElementById("main-nav").classList.add("show-bg");
-            }else{
-                document.getElementById("main-nav").classList.remove("show-bg");
+            try{
+                if(window.scrollY>10){
+                
+                    document.getElementById("main-nav").classList.add("show-bg");
+                }else{
+                    document.getElementById("main-nav").classList.remove("show-bg");
+                }       
+            } catch(err) {
+                //console.log("[ERROR] Navbar is not loaded!");
             }
-        
         });
     }
 

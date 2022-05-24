@@ -212,35 +212,40 @@ class SidePanel extends React.Component{
     savePreferences(preferenceId){
 
         if(preferenceId>0){
-            const preferenceData = this.state.userPreferenceList.filter(e=>e.id==preferenceId)[0]
-            editUserPreferences(Cookies.get('userid'), Cookies.get('authToken'), preferenceId, preferenceData.saveName, {
-                "group_condition": {
-                    "group_by": this.state.groupByType,
-                    "selection": this.state.groupBy,
-                },
-                "states": Array.from(this.state.selectedStateLabelData)
-            }, this.state.defaultPreference==preferenceId).then((response)=>{
-                if(response.data.success===1){/* On Success read state data */
-                    this.setState({
-                        labelError: false,
-                        userPreferenceList: this.state.userPreferenceList.filter(e=>e.id!=preferenceId).concat(response.data.data),
-                    })
-                } else {
+            try{
+                const preferenceData = this.state.userPreferenceList.filter(e=>e.id==preferenceId)[0]
+                editUserPreferences(Cookies.get('userid'), Cookies.get('authToken'), preferenceId, preferenceData.saveName, {
+                    "group_condition": {
+                        "group_by": this.state.groupByType,
+                        "selection": this.state.groupBy,
+                    },
+                    "states": Array.from(this.state.selectedStateLabelData)
+                }, this.state.defaultPreference==preferenceId).then((response)=>{
+                    if(response.data.success===1){/* On Success read state data */
+                        this.setState({
+                            labelError: false,
+                            userPreferenceList: this.state.userPreferenceList.filter(e=>e.id!=preferenceId).concat(response.data.data),
+                        })
+                    } else {
+                        this.setState({
+                            labelError: true
+                        },()=>{
+                            this.props.showMessage(-1, "There seems to be a technical issue on retreiving state labels from the server! Please hit refresh or try again later ...");
+                            setTimeout(()=>{ this.props.showMessage(0, "")},15000);
+                        });
+                    }
+                }).catch(err=>{
                     this.setState({
                         labelError: true
                     },()=>{
                         this.props.showMessage(-1, "There seems to be a technical issue on retreiving state labels from the server! Please hit refresh or try again later ...");
-                        setTimeout(()=>{ this.props.showMessage(0, "")},15000);
+                        setTimeout(()=>{this.props.showMessage(0, "")},15000);
                     });
-                }
-            }).catch(err=>{
-                this.setState({
-                    labelError: true
-                },()=>{
-                    this.props.showMessage(-1, "There seems to be a technical issue on retreiving state labels from the server! Please hit refresh or try again later ...");
-                    setTimeout(()=>{this.props.showMessage(0, "")},15000);
                 });
-            });
+            } catch (err){
+                this.props.showMessage(1, "Please create atleast one preference by '+ Create New Preferences'!");
+                setTimeout(()=>{this.props.showMessage(0, "")},15000);
+            }
         }else{
             this.props.showMessage(1, "Please create atleast one preference by '+ Create New Preferences'!");
             setTimeout(()=>{this.props.showMessage(0, "")},15000);

@@ -3,6 +3,8 @@ import Authentication from './components/Authentication/Authentication';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { NotFound } from './components/NotFound';
 import Dashboard from './components/Dashboard/Dashboard';
+import { UnderMaintainance } from './components/UnderMaintainance';
+import { UserProfile } from './components/UserProfile';
 
 /** 
  Main Application component 
@@ -19,6 +21,7 @@ function App() {
           <Route exact path="/"><Redirect to="/auth/login"/></Route>
           <Route path="/dashboard" component={Dashboard} />
           
+          <Route exact path="/user/:username/profile" component={UserProfile}/>
           <Route path="*"><NotFound showNav={true}/></Route>
           
         </Switch>
