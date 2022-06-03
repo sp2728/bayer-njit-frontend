@@ -18,6 +18,10 @@ export class UserProfile extends React.Component {
             confirmPassword: "",
         }
         this.onSubmit = this.onSubmit.bind(this);
+        this.logoutRerender = this.logoutRerender.bind(this);
+    }
+    logoutRerender(){
+        window.location.href = "/";
     }
 
     componentDidMount(){
@@ -51,7 +55,7 @@ export class UserProfile extends React.Component {
     render(){
         return (
             <div className="dashboard user-profile">
-                <NavigationBar />
+                <NavigationBar logoutRerender={()=>this.logoutRerender()} />
                 <div className="container-fluid py-5 mb-5">
                     <div className="row">
                         <div className="col-12">
