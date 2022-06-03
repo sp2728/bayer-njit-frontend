@@ -185,6 +185,16 @@ class GeoChart extends React.Component{
     }
 
     downloadGraph = () => {
+        /* 
+            TODO: Download US Map [GENERAL ALGORITHM]
+            - Create a US Map using several img tags with srcset of US states
+            - Create an Absolute positioned div for each img tag for a US state. This absolute position div will contain numerical figure
+            - Encapsulate all state in a div tag and set id="map-fig-download"
+            - Use HTML to PDF package to download the figure from #map-fig-download component
+            - [OPTIONAL] You can also create a legend for indicating:
+                - Population density color indication
+                - Population of small state that are less than a certain width/ height. That is less than this threshold width/height will make the text inside the absolute component overflows the US state image.
+        */
     }
 
 

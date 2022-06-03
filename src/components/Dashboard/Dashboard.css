@@ -48,6 +48,7 @@
 }
 .user-greetings{padding: 10px;}
 .display-md-none{display: none;}
+.display-none-lg-block{display: block}
 .display-none-md{display: inline-block;}
 .nav-mobile-bar{
     font-size: 25px;
@@ -70,7 +71,7 @@
 }
 
 @media screen and (max-width: 797.98px){
-    .display-none-md{display: none;}
+    .display-none-md, .display-none-lg-block{display: none;}
     .nav-md-toggler{
         display: none;
     }

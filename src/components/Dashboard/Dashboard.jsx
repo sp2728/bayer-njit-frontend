@@ -9,6 +9,7 @@ import { Footer } from "../Common/CommonComponent";
 import Cookies from "js-cookie";
 import { checkUserAccess } from "../../api/ckdAPI";
 import { UnderMaintainance } from "../UnderMaintainance";
+import { PopulationOverview } from "./DashboardPages/PopulationOverview";
 
 const navigationLinks = [{
     title: "Introduction",
@@ -200,10 +201,7 @@ class Dashboard extends React.Component{
                             <Route exact path="/dashboard/ckd" component={Introduction} />
                             <Route exact path="/dashboard/ckd/intro" component={Introduction} />
                             <Route path="/dashboard/ckd/patientfinder" component={PatientFinder} />
-                            <Route exact path="/dashboard/ckd/population/overview">
-                                {/* PopulationOverview Component */}
-                                <UnderMaintainance showNav={false} />
-                            </Route>
+                            <Route exact path="/dashboard/ckd/population/overview" component={PopulationOverview} />
                             <Route exact path="/dashboard/ckd/medseq">
                                 {/* MedicationSequence Component */}
                                 <UnderMaintainance showNav={false} />

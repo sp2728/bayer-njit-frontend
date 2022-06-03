@@ -164,3 +164,15 @@ export const getMedicalData = async (userid, authToken, jsonData) => {
         selectedState,
     });
 }
+
+
+
+/* --- Population Overview --- */
+export const getPopulationOverviewData = async (userid, authToken) => {
+    return await axios.get(backendURL + '/population/overview', {
+        params: {
+            userid,
+            authToken,
+        }
+    });
+}

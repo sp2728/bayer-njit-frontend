@@ -1,4 +1,4 @@
-import './Charts.css';
+import '../PatientFinderPages/Chartings/Charts.css';
 import React, { useEffect } from 'react'
 import * as d3 from 'd3';
 
@@ -20,7 +20,7 @@ const PieChart = () => {
         let mouseOver = function (event, d) {
             tooltip
             .style("opacity", 1)
-            .html(`${d.data[0]}`)
+            .html(`${d.data[0]}:${d.data[1]}`)
             .style("left", (event.pageX) + "px")
             .style("top", (event.pageY-80) + "px")
 
