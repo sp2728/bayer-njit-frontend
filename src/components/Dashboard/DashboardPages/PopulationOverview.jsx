@@ -53,16 +53,16 @@ export class PopulationOverview extends React.Component {
                     (this.state.isDataFetched)?
                     (
                         <div style={{marginTop:"20vh"}} className="row">
-                            <div className="col-12">
+                            <div className="col-12 animate__animated animate__fadeIn animate__delay-1s">
                                 <PieChart />
                             </div>
-                            <div className="col-12 col-xl-4">
+                            <div className="col-12 col-xl-4 animate__animated animate__fadeInLeft animate__delay-1s">
                                 {(this.state.ageData)?<Histogram id="1" data={this.state.ageData} title="Age"/>:""}
                             </div>
-                            <div className="col-12 col-xl-4">
+                            <div className="col-12 col-xl-4 animate__animated animate__fadeInUp animate__delay-1s">
                                 {(this.state.raceData)?<Histogram id="2" data={this.state.raceData} title="Race"/>:""}
                             </div>
-                            <div className="col-12 col-xl-4">
+                            <div className="col-12 col-xl-4 animate__animated animate__fadeInRight animate__delay-1s">
                                 {(this.state.insuranceData)?<Histogram id="3" data={this.state.insuranceData} title="Insurance"/>:""}
                             </div>
                         </div>
