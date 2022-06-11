@@ -168,11 +168,12 @@ export const getMedicalData = async (userid, authToken, jsonData) => {
 
 
 /* --- Population Overview --- */
-export const getPopulationOverviewData = async (userid, authToken) => {
+export const getPopulationOverviewData = async (userid, authToken, paytypChoice) => {
     return await axios.get(backendURL + '/population/overview', {
         params: {
             userid,
             authToken,
+            paytypChoice, /* Values => 0: Both, 1: Commercial, 2: Medicare*/
         }
     });
 }

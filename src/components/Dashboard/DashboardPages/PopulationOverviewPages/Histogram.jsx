@@ -14,8 +14,8 @@ class Histogram extends React.Component {
 
     componentDidMount(){
         const margin = { top: 30, right: 30, bottom: 30, left: 50 },
-        width = 400 - margin.left - margin.right,
-        height = 360 - margin.top - margin.bottom;
+        width = 350 - margin.left - margin.right,
+        height = 300 - margin.top - margin.bottom;
         this.setState({
             width,
             height,
@@ -51,14 +51,6 @@ class Histogram extends React.Component {
             svg.append("g")
                 .call(d3.axisLeft(y).ticks(3))
 
-            svg.append("text")
-                .attr("x", (this.state.width / 2))
-                .attr("y", 0 - (this.state.margin.top / 2))
-                .attr("text-anchor", "middle")
-                .style("font-size", "16px")
-                .style("font-weight", "bold")
-                .text(`${this.props.title}`);
-
             // Create rectangles
             let bars = svg.selectAll('.bar')
                 .data(sourceNames)
@@ -67,7 +59,7 @@ class Histogram extends React.Component {
 
             bars.append('rect')
                 .attr('class', 'bar')
-                .attr("fill", "#F7996E")
+                .attr("fill", "#eb4d4b")
                 .attr("x", function (d) { return x(d); })
                 .attr("y", function (d) { return y(dataObj[d]); })
                 .attr("width", x.bandwidth())
@@ -98,7 +90,14 @@ class Histogram extends React.Component {
 
     }
     render(){
-        return <div id={`histogram-${this.props.id}`} className="chart-card p-2" align="center"></div>
+        return (
+            <div className="chart-card">
+                <div className='text-center p-2'>
+                    <h3>{this.props.title}</h3>
+                </div>
+                <div id={`histogram-${this.props.id}`} className="p-2" align="center"></div>
+            </div>
+        )
     }
 }
 

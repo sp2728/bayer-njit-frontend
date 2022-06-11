@@ -2,15 +2,16 @@ import '../PatientFinderPages/Chartings/Charts.css';
 import React, { useEffect } from 'react'
 import * as d3 from 'd3';
 
-const PieChart = () => {
+const PieChart = (props) => {
 
-    const height = 450;
-    const width = 450;
-    const margin = 40;
+    const height = 300;
+    const width = (screen.availWidth>325)?325:screen.availWidth;
+    const margin = 0;
 
     const radius = Math.min(width, height) / 2 - margin
 
     useEffect(() => {
+        document.getElementById("pieChartContainer").innerHTML="";
         // create a tooltip
         var tooltip = d3.select(".tooltip")
             .style("opacity", 0)
@@ -45,15 +46,14 @@ const PieChart = () => {
                 .style("opacity", 1)
         }
 
-        const svg = d3.select("#pieChart")
+        const svg = d3.select("#pieChartContainer")
             .append("svg")
             .attr("width", width)
             .attr("height", height)
             .append("g")
-            .attr("transform", `translate(${width / 2}, ${height / 2})`)
-            .attr("align", "center");
+            .attr("transform", `translate(${width/2}, ${height / 2})`);
 
-        const data = { 'CKD': 9, 'Both CKD and T2D': 20, 'T2D': 25 }
+        const data = props.data;
         
         const color = d3.scaleOrdinal()
             .range(["#7FC8F8", "#FF6392", "#033860", "#6b486b"])
@@ -86,13 +86,22 @@ const PieChart = () => {
             .text(function (d) { return d.data[0] })
             .attr("transform", function (d) { return `translate(${arcGenerator.centroid(d)})` })
             .style("text-anchor", "middle")
-            .style("font-size", 17)
+            .style("font-size", 13)
     })
 
     return (
-        <div id="pieChart" align="center">
+        <div id="pieChart" align={(screen.availWidth>325)?"center":"left"}>
             <h3> Patient Cohorts </h3>
+            <div id="pieChartContainer"></div>
             <div className="tooltip"></div>
+            <div className="col-12 offset-md-7 col-md-5 text-start p-2">
+                <div>
+                    <span><strong>CKD:</strong> Cronic Kidney Disease</span>
+                </div>
+                <div>
+                    <span><strong>diab/T2D:</strong> Type 2 Diabetes</span>
+                </div>
+            </div>
         </div>
     )
 }

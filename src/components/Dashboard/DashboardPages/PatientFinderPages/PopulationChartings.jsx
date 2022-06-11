@@ -9,6 +9,18 @@ import Graph from './Chartings/Graph';
 import './PopulationChartings.css';
 
 const USMapCard = (props)=>{
+    const patientData = props.patientData.map((e,i)=>{
+        return (
+            <tr key={e.patid}>
+                <td>{e.patid}</td>
+                <td>{e.pat_age}</td>
+                <td>{getStateNameFromAcronym(e.state)}</td>
+                <td>{(e.sex=='M'?"Male":(e.sex=='F'?'Female':"Other"))}</td>
+                <td>{{"W":"White","B":"Black","H":"Hipsanic","A":"Asian","0":"Other"}[e.race]}</td>
+            </tr>
+        )
+    });
+
     return (
         <div className="row py-0">
             <div className="col-12 col-md-7 col-lg-8 py-0 animate__animated animate__fadeInUp animate__delay-3s">
@@ -56,7 +68,7 @@ const USMapCard = (props)=>{
             </div>
             <div id="patient-data-show">
                 {
-                    props.patientData.length>0?(
+                    (props.patientData.length>0)?(
                         <div style={{overflowX:"hidden"}}className="col-12 animate__animated animate__fadeInRight animate__delay-1s p-0">
                             <div style={{position: "relative", width: "100%", overflowX:"hidden"}} className="chart-card">
                                 <table style={{position:"fixed"}} className='table table-sm table-striped'>
@@ -71,21 +83,9 @@ const USMapCard = (props)=>{
                                     </thead>
                                 </table>
                                 <div id="table-container" className="chart-card table-responsive" style={{maxHeight: "500px", overflowY: "auto"}}>
-                                    <table className="table table-sm table-striped">
+                                    <table className="table table-sm table-striped" style={{marginTop:"40px"}}>
                                         <tbody>
-                                            {
-                                                props.patientData.map((e,i)=>{
-                                                    return (
-                                                        <tr key={e.patid}>
-                                                            <td>{e.patid}</td>
-                                                            <td>{e.pat_age}</td>
-                                                            <td>{getStateNameFromAcronym(e.state)}</td>
-                                                            <td>{(e.sex=='M'?"Male":(e.sex=='F'?'Female':"Other"))}</td>
-                                                            <td>{{"W":"White","B":"Black","H":"Hipsanic","A":"Asian","0":"Other"}[e.race]}</td>
-                                                        </tr>
-                                                    )
-                                                })
-                                            }
+                                            {patientData}
                                         </tbody>
                                         
                                     </table>
