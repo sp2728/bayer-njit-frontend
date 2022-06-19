@@ -112,9 +112,14 @@ export class PopulationOverview extends React.Component {
                                         <PieChart data={this.state.pieChartData} />
                                     </div>
                                 </div>
-                                <div className="row">
+                                <div className="row animate__animated animate__fadeIn animate__delay-1s">
                                     <div className="col">
                                         <div className="hr-line"></div>
+                                    </div>
+                                </div>
+                                <div className="row animate__animated animate__fadeIn animate__delay-1s">
+                                    <div className="col">
+                                        <h3 style={{fontFamily:"Montserrat, sans-serif", fontWeight:"bold"}}>Charting Insights</h3>
                                     </div>
                                 </div>
                                 <div className="row">

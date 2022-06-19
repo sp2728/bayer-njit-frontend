@@ -1,0 +1,24 @@
+#sankey-area {
+    font-family: "Segoe UI";
+    font-size: 8px;
+  }
+.node rect {
+  cursor: move;
+  fill-opacity: 0.9;
+  shape-rendering: crispEdges;
+}
+
+.node text {
+  pointer-events: none;
+  text-shadow: 0 1px 0 #fff;
+}
+
+.link {
+  fill: none;
+  stroke-opacity: 0.3;
+}
+
+.link:hover {
+  stroke-opacity: 0.7;
+}
+  

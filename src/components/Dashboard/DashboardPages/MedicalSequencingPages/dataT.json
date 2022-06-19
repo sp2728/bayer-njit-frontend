@@ -1,0 +1,367 @@
+{
+    "nodes": [
+      {
+        "name": "IPPU",
+        "node": 0,
+        "valtot": 646.0948037
+      },
+      {
+        "name": "Energía",
+        "node": 1,
+        "valtot": 6163.287025
+      },
+      {
+        "name": "Desechos",
+        "node": 2,
+        "valtot": 1091.082264
+      },
+      {
+        "name": "AFOLU",
+        "node": 3,
+        "valtot": 26880.13353
+      },
+      {
+        "name": "Otras Categorías",
+        "node": 4,
+        "valtot": 0.00349378613
+      },
+      {
+        "name": "Producción de cal",
+        "node": 5,
+        "valtot": 131.19876
+      },
+      {
+        "name": "Producción de cemento",
+        "node": 6,
+        "valtot": 367.404485
+      },
+      {
+        "name": "Refrigeración y Aire Acondicionado",
+        "node": 7,
+        "valtot": 94.35576228
+      },
+      {
+        "name": "Comercial,Institucional, Residencial, Agrícola, Silvicultura y Pesca",
+        "node": 8,
+        "valtot": 1039.261311
+      },
+      {
+        "name": "Industrias de la Energía",
+        "node": 9,
+        "valtot": 331.2156546
+      },
+      {
+        "name": "Industrias Manufactureras y de la Construcción",
+        "node": 10,
+        "valtot": 821.4719314
+      },
+      {
+        "name": "Transporte",
+        "node": 11,
+        "valtot": 3734.747855
+      },
+      {
+        "name": "Disposición de residuos sólidos",
+        "node": 12,
+        "valtot": 829.1727825
+      },
+      {
+        "name": "Tratamiento y descarga de aguas residuales",
+        "node": 13,
+        "valtot": 236.1621613
+      },
+      {
+        "name": "Aplicación de Urea",
+        "node": 14,
+        "valtot": 167.6004
+      },
+      {
+        "name": "Asentamientos",
+        "node": 15,
+        "valtot": 195.0624885
+      },
+      {
+        "name": "Cultivo de arroz",
+        "node": 16,
+        "valtot": 335.711376
+      },
+      {
+        "name": "Emisiones directas de N2O provenientes de suelos manejados",
+        "node": 17,
+        "valtot": 6875.449919
+      },
+      {
+        "name": "Emisiones indirectas de N2O provenientes de suelos manejados",
+        "node": 18,
+        "valtot": 1655.519551
+      },
+      {
+        "name": "Fermentación entérica",
+        "node": 19,
+        "valtot": 14765.91856
+      },
+      {
+        "name": "Gestión del estiércol",
+        "node": 20,
+        "valtot": 312.1488071
+      },
+      {
+        "name": "Tierras de cultivo",
+        "node": 21,
+        "valtot": 2538.817209
+      },
+      {
+        "name": "CO2",
+        "node": 22,
+        "valtot": 9264.245025
+      },
+      {
+        "name": "HFCs",
+        "node": 23,
+        "valtot": 132.7631871
+      },
+      {
+        "name": "N2O",
+        "node": 24,
+        "valtot": 8862.609576
+      },
+      {
+        "name": "SF6",
+        "node": 25,
+        "valtot": 0.675412646
+      },
+      {
+        "name": "CH4",
+        "node": 26,
+        "valtot": 16520.30443
+      }
+    ],
+    "links": [
+      {
+        "source": 3,
+        "target": 14,
+        "value": 167.6004
+      },
+      {
+        "source": 3,
+        "target": 15,
+        "value": 195.0624885
+      },
+      {
+        "source": 3,
+        "target": 16,
+        "value": 335.711376
+      },
+      {
+        "source": 3,
+        "target": 17,
+        "value": 6875.449919
+      },
+      {
+        "source": 3,
+        "target": 18,
+        "value": 1655.519551
+      },
+      {
+        "source": 3,
+        "target": 19,
+        "value": 14765.91856
+      },
+      {
+        "source": 3,
+        "target": 20,
+        "value": 312.1488071
+      },
+      {
+        "source": 3,
+        "target": 4,
+        "value": 33.90522191
+      },
+      {
+        "source": 3,
+        "target": 21,
+        "value": 2538.817209
+      },
+      {
+        "source": 2,
+        "target": 12,
+        "value": 829.1727825
+      },
+      {
+        "source": 2,
+        "target": 4,
+        "value": 25.74732033
+      },
+      {
+        "source": 2,
+        "target": 13,
+        "value": 236.1621613
+      },
+      {
+        "source": 1,
+        "target": 8,
+        "value": 1039.261311
+      },
+      {
+        "source": 1,
+        "target": 9,
+        "value": 331.2156546
+      },
+      {
+        "source": 1,
+        "target": 10,
+        "value": 821.4719314
+      },
+      {
+        "source": 1,
+        "target": 4,
+        "value": 236.5902743
+      },
+      {
+        "source": 1,
+        "target": 11,
+        "value": 3734.747855
+      },
+      {
+        "source": 0,
+        "target": 4,
+        "value": 53.13579644
+      },
+      {
+        "source": 0,
+        "target": 5,
+        "value": 131.19876
+      },
+      {
+        "source": 0,
+        "target": 6,
+        "value": 367.404485
+      },
+      {
+        "source": 0,
+        "target": 7,
+        "value": 94.35576228
+      },
+      {
+        "source": 14,
+        "target": 22,
+        "value": 167.6004
+      },
+      {
+        "source": 15,
+        "target": 22,
+        "value": 195.0624885
+      },
+      {
+        "source": 8,
+        "target": 26,
+        "value": 87.74737123
+      },
+      {
+        "source": 8,
+        "target": 22,
+        "value": 951.5139394
+      },
+      {
+        "source": 16,
+        "target": 26,
+        "value": 335.711376
+      },
+      {
+        "source": 12,
+        "target": 26,
+        "value": 829.1727825
+      },
+      {
+        "source": 17,
+        "target": 24,
+        "value": 6875.449919
+      },
+      {
+        "source": 18,
+        "target": 24,
+        "value": 1655.519551
+      },
+      {
+        "source": 19,
+        "target": 26,
+        "value": 14765.91856
+      },
+      {
+        "source": 20,
+        "target": 26,
+        "value": 312.1488071
+      },
+      {
+        "source": 9,
+        "target": 22,
+        "value": 331.2156546
+      },
+      {
+        "source": 10,
+        "target": 22,
+        "value": 821.4719314
+      },
+      {
+        "source": 4,
+        "target": 26,
+        "value": 28.2258295
+      },
+      {
+        "source": 4,
+        "target": 22,
+        "value": 25.21230225
+      },
+      {
+        "source": 4,
+        "target": 23,
+        "value": 38.40742485
+      },
+      {
+        "source": 4,
+        "target": 24,
+        "value": 256.8576438
+      },
+      {
+        "source": 4,
+        "target": 25,
+        "value": 0.675412646
+      },
+      {
+        "source": 5,
+        "target": 22,
+        "value": 131.19876
+      },
+      {
+        "source": 6,
+        "target": 22,
+        "value": 367.404485
+      },
+      {
+        "source": 7,
+        "target": 23,
+        "value": 94.35576228
+      },
+      {
+        "source": 21,
+        "target": 22,
+        "value": 2538.817209
+      },
+      {
+        "source": 11,
+        "target": 22,
+        "value": 3734.747855
+      },
+      {
+        "source": 13,
+        "target": 26,
+        "value": 161.3796985
+      },
+      {
+        "source": 13,
+        "target": 24,
+        "value": 74.78246278
+      }
+    ]
+  }
+  

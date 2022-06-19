@@ -1,0 +1,11 @@
+.medical-sequencing h3{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 130%;
+    font-weight: bold;
+}
+.medical-sequencing .chart-card{
+    overflow: visible;
+}
+.medical-sequencing .formLabel{
+    padding: 10px;
+}

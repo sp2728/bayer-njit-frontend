@@ -1,0 +1,1362 @@
+{
+    "nodes": [
+      {
+        "name": "AFOLU",
+        "node": 0,
+        "valtot": 27066.21285
+      },
+      {
+        "name": "Desechos",
+        "node": 1,
+        "valtot": 1091.082264
+      },
+      {
+        "name": "Energí­a",
+        "node": 2,
+        "valtot": 6163.287025
+      },
+      {
+        "name": "IPPU",
+        "node": 3,
+        "valtot": 646.0902771
+      },
+      {
+        "name": "Aplicación de Urea",
+        "node": 4,
+        "valtot": 167.6004
+      },
+      {
+        "name": "Cultivo de arroz",
+        "node": 5,
+        "valtot": 335.711376
+      },
+      {
+        "name": "Emisiones directas de N2O de los suelos gestionados",
+        "node": 6,
+        "valtot": 6863.784167
+      },
+      {
+        "name": "Emisiones indirectas de N2O de los suelos gestionados",
+        "node": 7,
+        "valtot": 1650.561606
+      },
+      {
+        "name": "Emisiones indirectas de N2O resultantes de la gestión del estiércol",
+        "node": 8,
+        "valtot": 15.06346898
+      },
+      {
+        "name": "Quema de biomasa",
+        "node": 9,
+        "valtot": 8.835337
+      },
+      {
+        "name": "Eliminación de desechos sólidos",
+        "node": 10,
+        "valtot": 829.1727825
+      },
+      {
+        "name": "Incineración e incineración abierta de desechos",
+        "node": 11,
+        "valtot": 13.66496433
+      },
+      {
+        "name": "Tratamiento biológico de los desechos sólidos",
+        "node": 12,
+        "valtot": 12.082356
+      },
+      {
+        "name": "Tratamiento y eliminación de aguas residuales domésticas",
+        "node": 13,
+        "valtot": 80.67424039
+      },
+      {
+        "name": "Tratamiento y eliminación de aguas residuales industriales",
+        "node": 14,
+        "valtot": 155.4879209
+      },
+      {
+        "name": "Petroleo y Gas natural",
+        "node": 15,
+        "valtot": 2.02159056
+      },
+      {
+        "name": "Iron and Steel Production",
+        "node": 16,
+        "valtot": 0.370566072
+      },
+      {
+        "name": "Aerosoles",
+        "node": 17,
+        "valtot": 23.569
+      },
+      {
+        "name": "Agentes espumantes",
+        "node": 18,
+        "valtot": 1.35865
+      },
+      {
+        "name": "Equipamiento eléctrico",
+        "node": 19,
+        "valtot": 0.675412646
+      },
+      {
+        "name": "N2O de uso de productos",
+        "node": 20,
+        "valtot": 2.2475
+      },
+      {
+        "name": "Otros usos en procesos de carbonatos",
+        "node": 21,
+        "valtot": 0.624230744
+      },
+      {
+        "name": "Producción de cal",
+        "node": 22,
+        "valtot": 131.19876
+      },
+      {
+        "name": "Producción de carburo",
+        "node": 23,
+        "valtot": 0.17446
+      },
+      {
+        "name": "Producción de cemento",
+        "node": 24,
+        "valtot": 367.404485
+      },
+      {
+        "name": "Productos contra incendios",
+        "node": 25,
+        "valtot": 13.47977485
+      },
+      {
+        "name": "Refrigeración y aire acondicionado",
+        "node": 26,
+        "valtot": 94.35123566
+      },
+      {
+        "name": "Uso de cera de parafina",
+        "node": 27,
+        "valtot": 0.381333333
+      },
+      {
+        "name": "Uso de lubricante",
+        "node": 28,
+        "valtot": 10.2548688
+      },
+      {
+        "name": "Tierras convertidas a Pastizales   -   Biomasa",
+        "node": 29,
+        "valtot": 140.3655
+      },
+      {
+        "name": "Tierras convertidas a Pastizales   -   DOM",
+        "node": 30,
+        "valtot": 42.9
+      },
+      {
+        "name": "Tierras convertidas a Tierras de cultivo   -   SOC",
+        "node": 31,
+        "valtot": 2256.961666
+      },
+      {
+        "name": "Tierras de cultivo que permanecen como tal   -   SOC",
+        "node": 32,
+        "valtot": 281.8555435
+      },
+      {
+        "name": "Tierras convertidas a Asentamientos   -   Biomasa",
+        "node": 33,
+        "valtot": 171.6
+      },
+      {
+        "name": "Tierras convertidas a Asentamientos   -   DOM",
+        "node": 34,
+        "valtot": 42.9
+      },
+      {
+        "name": "Caballos",
+        "node": 35,
+        "valtot": 173.5518649
+      },
+      {
+        "name": "Cabras",
+        "node": 36,
+        "valtot": 0.9413019
+      },
+      {
+        "name": "Cerdos",
+        "node": 37,
+        "valtot": 14.18935175
+      },
+      {
+        "name": "Ganado lechero",
+        "node": 38,
+        "valtot": 731.4208122
+      },
+      {
+        "name": "Mulas y asnos",
+        "node": 39,
+        "valtot": 0.2289
+      },
+      {
+        "name": "Otro ganado vacuno",
+        "node": 40,
+        "valtot": 13451.21175
+      },
+      {
+        "name": "Ganado Ovino",
+        "node": 41,
+        "valtot": 712.2137138
+      },
+      {
+        "name": "Aves de corral",
+        "node": 42,
+        "valtot": 4.316088287
+      },
+      {
+        "name": "Generación de electricidad  -   Biomasa",
+        "node": 43,
+        "valtot": 6.450967012
+      },
+      {
+        "name": "Generación de electricidad  -  Combustibles gaseosos",
+        "node": 44,
+        "valtot": 20.57802989
+      },
+      {
+        "name": "Generación de electricidad  -  Combustibles líquidos",
+        "node": 45,
+        "valtot": 163.4494524
+      },
+      {
+        "name": "Refinación del petróleo  -  Combustibles gaseosos",
+        "node": 46,
+        "valtot": 6.615428702
+      },
+      {
+        "name": "Refinación del petróleo  -  Combustibles líquidos",
+        "node": 47,
+        "valtot": 141.5482969
+      },
+      {
+        "name": "Industrias manufactureras y de la construcción  -   Biomasa",
+        "node": 48,
+        "valtot": 77.78501227
+      },
+      {
+        "name": "Industrias manufactureras y de la construcción  -  Combustibles gaseosos",
+        "node": 49,
+        "valtot": 37.80244973
+      },
+      {
+        "name": "Industrias manufactureras y de la construcción  -  Combustibles líquidos",
+        "node": 50,
+        "valtot": 786.0318923
+      },
+      {
+        "name": "Agricultura/Silvicultura/Pesca  -  Estacionario  -   Biomasa",
+        "node": 51,
+        "valtot": 11.05525646
+      },
+      {
+        "name": "Agricultura/Silvicultura/Pesca  -  Estacionario  -  Combustibles líquidos",
+        "node": 52,
+        "valtot": 45.99843034
+      },
+      {
+        "name": "Agricultura/Silvicultura/Pesca  -  Pesca  -  Combustibles líquidos",
+        "node": 53,
+        "valtot": 57.74414463
+      },
+      {
+        "name": "Agricultura/Silvicultura/Pesca  -  Vehículos todo terreno  -  Combustibles líquidos",
+        "node": 54,
+        "valtot": 429.6539688
+      },
+      {
+        "name": "Comercial/Institucional  -   Biomasa",
+        "node": 55,
+        "valtot": 2.228235894
+      },
+      {
+        "name": "Comercial/Institucional  -  Combustibles gaseosos",
+        "node": 56,
+        "valtot": 26.93424543
+      },
+      {
+        "name": "Comercial/Institucional  -  Combustibles líquidos",
+        "node": 57,
+        "valtot": 55.01270981
+      },
+      {
+        "name": "Residencial  -   Biomasa",
+        "node": 58,
+        "valtot": 92.33509267
+      },
+      {
+        "name": "Residencial  -  Combustibles gaseosos",
+        "node": 59,
+        "valtot": 46.30800092
+      },
+      {
+        "name": "Residencial  -  Combustibles líquidos",
+        "node": 60,
+        "valtot": 337.8706402
+      },
+      {
+        "name": "Aviación de cabotaje  -  Combustibles líquidos",
+        "node": 61,
+        "valtot": 13.12202573
+      },
+      {
+        "name": "Ferrocarriles  -  Combustibles líquidos",
+        "node": 62,
+        "valtot": 0.347726928
+      },
+      {
+        "name": "Navegación marítima y fluvial nacional  -  Combustibles líquidos",
+        "node": 63,
+        "valtot": 50.95902493
+      },
+      {
+        "name": "Transporte terrestre  -  Combustibles líquidos",
+        "node": 64,
+        "valtot": 3751.434403
+      },
+      {
+        "name": "Asentamientos",
+        "node": 65,
+        "valtot": 214.5
+      },
+      {
+        "name": "Fermentación entérica",
+        "node": 66,
+        "valtot": 14765.91856
+      },
+      {
+        "name": "Industrias de la Energía",
+        "node": 67,
+        "valtot": 338.6421749
+      },
+      {
+        "name": "Industrias manufactureras y de la construcción",
+        "node": 68,
+        "valtot": 901.6193543
+      },
+      {
+        "name": "Manejo del estiercol",
+        "node": 69,
+        "valtot": 322.155223
+      },
+      {
+        "name": "Otros Sectores",
+        "node": 70,
+        "valtot": 1105.140725
+      },
+      {
+        "name": "Pastizales",
+        "node": 71,
+        "valtot": 183.2655
+      },
+      {
+        "name": "Tierras de cultivo",
+        "node": 72,
+        "valtot": 2538.817209
+      },
+      {
+        "name": "Transporte",
+        "node": 73,
+        "valtot": 3815.86318
+      },
+      {
+        "name": "CO2",
+        "node": 74,
+        "valtot": 9466.948036
+      },
+      {
+        "name": "CH4",
+        "node": 75,
+        "valtot": 16520.30443
+      },
+      {
+        "name": "N2O",
+        "node": 76,
+        "valtot": 8845.98588
+      },
+      {
+        "name": "HFC+SF6",
+        "node": 77,
+        "valtot": 133.4340731
+      }
+    ],
+    "links": [
+      {
+        "source": 0,
+        "target": 71,
+        "value": 183.2655
+      },
+      {
+        "source": 0,
+        "target": 72,
+        "value": 2538.817209
+      },
+      {
+        "source": 0,
+        "target": 4,
+        "value": 167.6004
+      },
+      {
+        "source": 0,
+        "target": 65,
+        "value": 214.5
+      },
+      {
+        "source": 0,
+        "target": 5,
+        "value": 335.711376
+      },
+      {
+        "source": 0,
+        "target": 6,
+        "value": 6863.784167
+      },
+      {
+        "source": 0,
+        "target": 7,
+        "value": 1650.561606
+      },
+      {
+        "source": 0,
+        "target": 8,
+        "value": 15.06346898
+      },
+      {
+        "source": 0,
+        "target": 66,
+        "value": 14765.91856
+      },
+      {
+        "source": 0,
+        "target": 69,
+        "value": 322.155223
+      },
+      {
+        "source": 0,
+        "target": 9,
+        "value": 8.835337
+      },
+      {
+        "source": 1,
+        "target": 10,
+        "value": 829.1727825
+      },
+      {
+        "source": 1,
+        "target": 11,
+        "value": 13.66496433
+      },
+      {
+        "source": 1,
+        "target": 12,
+        "value": 12.082356
+      },
+      {
+        "source": 1,
+        "target": 13,
+        "value": 80.67424039
+      },
+      {
+        "source": 1,
+        "target": 14,
+        "value": 155.4879209
+      },
+      {
+        "source": 2,
+        "target": 67,
+        "value": 338.6421749
+      },
+      {
+        "source": 2,
+        "target": 68,
+        "value": 901.6193543
+      },
+      {
+        "source": 2,
+        "target": 70,
+        "value": 1105.140725
+      },
+      {
+        "source": 2,
+        "target": 15,
+        "value": 2.02159056
+      },
+      {
+        "source": 2,
+        "target": 73,
+        "value": 3815.86318
+      },
+      {
+        "source": 3,
+        "target": 16,
+        "value": 0.370566072
+      },
+      {
+        "source": 3,
+        "target": 17,
+        "value": 23.569
+      },
+      {
+        "source": 3,
+        "target": 18,
+        "value": 1.35865
+      },
+      {
+        "source": 3,
+        "target": 19,
+        "value": 0.675412646
+      },
+      {
+        "source": 3,
+        "target": 20,
+        "value": 2.2475
+      },
+      {
+        "source": 3,
+        "target": 21,
+        "value": 0.624230744
+      },
+      {
+        "source": 3,
+        "target": 22,
+        "value": 131.19876
+      },
+      {
+        "source": 3,
+        "target": 23,
+        "value": 0.17446
+      },
+      {
+        "source": 3,
+        "target": 24,
+        "value": 367.404485
+      },
+      {
+        "source": 3,
+        "target": 25,
+        "value": 13.47977485
+      },
+      {
+        "source": 3,
+        "target": 26,
+        "value": 94.35123566
+      },
+      {
+        "source": 3,
+        "target": 27,
+        "value": 0.381333333
+      },
+      {
+        "source": 3,
+        "target": 28,
+        "value": 10.2548688
+      },
+      {
+        "source": 4,
+        "target": 74,
+        "value": 167.6004
+      },
+      {
+        "source": 5,
+        "target": 75,
+        "value": 335.711376
+      },
+      {
+        "source": 6,
+        "target": 76,
+        "value": 6863.784167
+      },
+      {
+        "source": 7,
+        "target": 76,
+        "value": 1650.561606
+      },
+      {
+        "source": 8,
+        "target": 76,
+        "value": 15.06346898
+      },
+      {
+        "source": 9,
+        "target": 75,
+        "value": 4.7933865
+      },
+      {
+        "source": 9,
+        "target": 76,
+        "value": 4.0419505
+      },
+      {
+        "source": 10,
+        "target": 75,
+        "value": 829.1727825
+      },
+      {
+        "source": 11,
+        "target": 75,
+        "value": 0.010234955
+      },
+      {
+        "source": 11,
+        "target": 74,
+        "value": 13.402917
+      },
+      {
+        "source": 11,
+        "target": 76,
+        "value": 0.25181238
+      },
+      {
+        "source": 12,
+        "target": 75,
+        "value": 6.40731
+      },
+      {
+        "source": 12,
+        "target": 76,
+        "value": 5.675046
+      },
+      {
+        "source": 13,
+        "target": 75,
+        "value": 5.891777612
+      },
+      {
+        "source": 13,
+        "target": 76,
+        "value": 74.78246278
+      },
+      {
+        "source": 14,
+        "target": 75,
+        "value": 155.4879209
+      },
+      {
+        "source": 15,
+        "target": 75,
+        "value": 2.017664264
+      },
+      {
+        "source": 15,
+        "target": 74,
+        "value": 0.003926296
+      },
+      {
+        "source": 16,
+        "target": 74,
+        "value": 0.370566072
+      },
+      {
+        "source": 17,
+        "target": 77,
+        "value": 23.569
+      },
+      {
+        "source": 18,
+        "target": 77,
+        "value": 1.35865
+      },
+      {
+        "source": 19,
+        "target": 77,
+        "value": 0.675412646
+      },
+      {
+        "source": 20,
+        "target": 76,
+        "value": 2.2475
+      },
+      {
+        "source": 21,
+        "target": 74,
+        "value": 0.624230744
+      },
+      {
+        "source": 22,
+        "target": 74,
+        "value": 131.19876
+      },
+      {
+        "source": 23,
+        "target": 74,
+        "value": 0.17446
+      },
+      {
+        "source": 24,
+        "target": 74,
+        "value": 367.404485
+      },
+      {
+        "source": 25,
+        "target": 77,
+        "value": 13.47977485
+      },
+      {
+        "source": 26,
+        "target": 77,
+        "value": 94.35123566
+      },
+      {
+        "source": 27,
+        "target": 74,
+        "value": 0.381333333
+      },
+      {
+        "source": 28,
+        "target": 74,
+        "value": 10.2548688
+      },
+      {
+        "source": 29,
+        "target": 74,
+        "value": 140.3655
+      },
+      {
+        "source": 30,
+        "target": 74,
+        "value": 42.9
+      },
+      {
+        "source": 31,
+        "target": 74,
+        "value": 2256.961666
+      },
+      {
+        "source": 32,
+        "target": 74,
+        "value": 281.8555435
+      },
+      {
+        "source": 33,
+        "target": 74,
+        "value": 171.6
+      },
+      {
+        "source": 34,
+        "target": 74,
+        "value": 42.9
+      },
+      {
+        "source": 35,
+        "target": 75,
+        "value": 159.059754
+      },
+      {
+        "source": 36,
+        "target": 75,
+        "value": 0.91035
+      },
+      {
+        "source": 37,
+        "target": 75,
+        "value": 3.675
+      },
+      {
+        "source": 38,
+        "target": 75,
+        "value": 717.3105261
+      },
+      {
+        "source": 39,
+        "target": 75,
+        "value": 0.21
+      },
+      {
+        "source": 40,
+        "target": 75,
+        "value": 13193.28331
+      },
+      {
+        "source": 41,
+        "target": 75,
+        "value": 691.469625
+      },
+      {
+        "source": 42,
+        "target": 75,
+        "value": 3.28861722
+      },
+      {
+        "source": 42,
+        "target": 76,
+        "value": 1.027471067
+      },
+      {
+        "source": 35,
+        "target": 75,
+        "value": 14.49211092
+      },
+      {
+        "source": 36,
+        "target": 75,
+        "value": 0.0309519
+      },
+      {
+        "source": 37,
+        "target": 75,
+        "value": 3.675
+      },
+      {
+        "source": 37,
+        "target": 76,
+        "value": 6.83935175
+      },
+      {
+        "source": 38,
+        "target": 75,
+        "value": 11.970693
+      },
+      {
+        "source": 38,
+        "target": 76,
+        "value": 2.139593111
+      },
+      {
+        "source": 39,
+        "target": 75,
+        "value": 0.0189
+      },
+      {
+        "source": 40,
+        "target": 75,
+        "value": 257.9284453
+      },
+      {
+        "source": 41,
+        "target": 75,
+        "value": 20.74408875
+      },
+      {
+        "source": 43,
+        "target": 75,
+        "value": 0.61167892
+      },
+      {
+        "source": 43,
+        "target": 76,
+        "value": 5.839288092
+      },
+      {
+        "source": 44,
+        "target": 75,
+        "value": 0.030597134
+      },
+      {
+        "source": 44,
+        "target": 74,
+        "value": 20.43451476
+      },
+      {
+        "source": 44,
+        "target": 76,
+        "value": 0.112917996
+      },
+      {
+        "source": 45,
+        "target": 75,
+        "value": 0.1368958
+      },
+      {
+        "source": 45,
+        "target": 74,
+        "value": 162.908388
+      },
+      {
+        "source": 45,
+        "target": 76,
+        "value": 0.404168551
+      },
+      {
+        "source": 46,
+        "target": 75,
+        "value": 0.002461838
+      },
+      {
+        "source": 46,
+        "target": 74,
+        "value": 6.57662544
+      },
+      {
+        "source": 46,
+        "target": 76,
+        "value": 0.036341424
+      },
+      {
+        "source": 47,
+        "target": 75,
+        "value": 0.081495643
+      },
+      {
+        "source": 47,
+        "target": 74,
+        "value": 141.2961264
+      },
+      {
+        "source": 47,
+        "target": 76,
+        "value": 0.170674902
+      },
+      {
+        "source": 48,
+        "target": 75,
+        "value": 7.348323856
+      },
+      {
+        "source": 48,
+        "target": 76,
+        "value": 70.43668842
+      },
+      {
+        "source": 49,
+        "target": 75,
+        "value": 0.014067648
+      },
+      {
+        "source": 49,
+        "target": 74,
+        "value": 37.5807168
+      },
+      {
+        "source": 49,
+        "target": 76,
+        "value": 0.20766528
+      },
+      {
+        "source": 50,
+        "target": 75,
+        "value": 0.427049832
+      },
+      {
+        "source": 50,
+        "target": 74,
+        "value": 783.8912146
+      },
+      {
+        "source": 50,
+        "target": 76,
+        "value": 1.713627932
+      },
+      {
+        "source": 51,
+        "target": 75,
+        "value": 9.235230275
+      },
+      {
+        "source": 51,
+        "target": 76,
+        "value": 1.820026187
+      },
+      {
+        "source": 52,
+        "target": 75,
+        "value": 0.108655899
+      },
+      {
+        "source": 52,
+        "target": 74,
+        "value": 45.81248581
+      },
+      {
+        "source": 52,
+        "target": 76,
+        "value": 0.077288625
+      },
+      {
+        "source": 53,
+        "target": 75,
+        "value": 0.299992594
+      },
+      {
+        "source": 53,
+        "target": 74,
+        "value": 56.96392608
+      },
+      {
+        "source": 53,
+        "target": 76,
+        "value": 0.48022596
+      },
+      {
+        "source": 54,
+        "target": 75,
+        "value": 0.470825286
+      },
+      {
+        "source": 54,
+        "target": 74,
+        "value": 383.5865595
+      },
+      {
+        "source": 54,
+        "target": 76,
+        "value": 45.59658402
+      },
+      {
+        "source": 55,
+        "target": 75,
+        "value": 0.217257239
+      },
+      {
+        "source": 55,
+        "target": 76,
+        "value": 2.010978655
+      },
+      {
+        "source": 56,
+        "target": 75,
+        "value": 0.010023199
+      },
+      {
+        "source": 56,
+        "target": 74,
+        "value": 26.77626072
+      },
+      {
+        "source": 56,
+        "target": 76,
+        "value": 0.147961512
+      },
+      {
+        "source": 57,
+        "target": 75,
+        "value": 0.046511161
+      },
+      {
+        "source": 57,
+        "target": 74,
+        "value": 54.89857764
+      },
+      {
+        "source": 57,
+        "target": 76,
+        "value": 0.067621007
+      },
+      {
+        "source": 58,
+        "target": 75,
+        "value": 77.1900638
+      },
+      {
+        "source": 58,
+        "target": 76,
+        "value": 15.14502887
+      },
+      {
+        "source": 59,
+        "target": 75,
+        "value": 0.017232869
+      },
+      {
+        "source": 59,
+        "target": 74,
+        "value": 46.03637808
+      },
+      {
+        "source": 59,
+        "target": 76,
+        "value": 0.254389968
+      },
+      {
+        "source": 60,
+        "target": 75,
+        "value": 0.151578907
+      },
+      {
+        "source": 60,
+        "target": 74,
+        "value": 337.4397515
+      },
+      {
+        "source": 60,
+        "target": 76,
+        "value": 0.279309802
+      },
+      {
+        "source": 61,
+        "target": 75,
+        "value": 0.001934302
+      },
+      {
+        "source": 61,
+        "target": 74,
+        "value": 13.00587552
+      },
+      {
+        "source": 61,
+        "target": 76,
+        "value": 0.114215904
+      },
+      {
+        "source": 62,
+        "target": 75,
+        "value": 0.00036488
+      },
+      {
+        "source": 62,
+        "target": 74,
+        "value": 0.31024188
+      },
+      {
+        "source": 62,
+        "target": 76,
+        "value": 0.037120169
+      },
+      {
+        "source": 63,
+        "target": 75,
+        "value": 0.099704455
+      },
+      {
+        "source": 63,
+        "target": 74,
+        "value": 50.43879828
+      },
+      {
+        "source": 63,
+        "target": 76,
+        "value": 0.420522192
+      },
+      {
+        "source": 64,
+        "target": 75,
+        "value": 6.242659476
+      },
+      {
+        "source": 64,
+        "target": 74,
+        "value": 3670.992939
+      },
+      {
+        "source": 64,
+        "target": 76,
+        "value": 74.19880454
+      },
+      {
+        "source": 65,
+        "target": 33,
+        "value": 171.6
+      },
+      {
+        "source": 65,
+        "target": 34,
+        "value": 42.9
+      },
+      {
+        "source": 66,
+        "target": 35,
+        "value": 159.059754
+      },
+      {
+        "source": 66,
+        "target": 36,
+        "value": 0.91035
+      },
+      {
+        "source": 66,
+        "target": 37,
+        "value": 3.675
+      },
+      {
+        "source": 66,
+        "target": 38,
+        "value": 717.3105261
+      },
+      {
+        "source": 66,
+        "target": 41,
+        "value": 691.469625
+      },
+      {
+        "source": 66,
+        "target": 39,
+        "value": 0.21
+      },
+      {
+        "source": 66,
+        "target": 40,
+        "value": 13193.28331
+      },
+      {
+        "source": 67,
+        "target": 43,
+        "value": 6.450967012
+      },
+      {
+        "source": 67,
+        "target": 44,
+        "value": 20.57802989
+      },
+      {
+        "source": 67,
+        "target": 45,
+        "value": 163.4494524
+      },
+      {
+        "source": 67,
+        "target": 46,
+        "value": 6.615428702
+      },
+      {
+        "source": 67,
+        "target": 47,
+        "value": 141.5482969
+      },
+      {
+        "source": 68,
+        "target": 48,
+        "value": 77.78501227
+      },
+      {
+        "source": 68,
+        "target": 49,
+        "value": 37.80244973
+      },
+      {
+        "source": 68,
+        "target": 50,
+        "value": 786.0318923
+      },
+      {
+        "source": 69,
+        "target": 42,
+        "value": 4.316088287
+      },
+      {
+        "source": 69,
+        "target": 35,
+        "value": 14.49211092
+      },
+      {
+        "source": 69,
+        "target": 36,
+        "value": 0.0309519
+      },
+      {
+        "source": 69,
+        "target": 37,
+        "value": 10.51435175
+      },
+      {
+        "source": 69,
+        "target": 38,
+        "value": 14.11028611
+      },
+      {
+        "source": 69,
+        "target": 41,
+        "value": 20.74408875
+      },
+      {
+        "source": 69,
+        "target": 39,
+        "value": 0.0189
+      },
+      {
+        "source": 69,
+        "target": 40,
+        "value": 257.9284453
+      },
+      {
+        "source": 70,
+        "target": 51,
+        "value": 11.05525646
+      },
+      {
+        "source": 70,
+        "target": 52,
+        "value": 45.99843034
+      },
+      {
+        "source": 70,
+        "target": 53,
+        "value": 57.74414463
+      },
+      {
+        "source": 70,
+        "target": 54,
+        "value": 429.6539688
+      },
+      {
+        "source": 70,
+        "target": 55,
+        "value": 2.228235894
+      },
+      {
+        "source": 70,
+        "target": 56,
+        "value": 26.93424543
+      },
+      {
+        "source": 70,
+        "target": 57,
+        "value": 55.01270981
+      },
+      {
+        "source": 70,
+        "target": 58,
+        "value": 92.33509267
+      },
+      {
+        "source": 70,
+        "target": 59,
+        "value": 46.30800092
+      },
+      {
+        "source": 70,
+        "target": 60,
+        "value": 337.8706402
+      },
+      {
+        "source": 71,
+        "target": 29,
+        "value": 140.3655
+      },
+      {
+        "source": 71,
+        "target": 30,
+        "value": 42.9
+      },
+      {
+        "source": 72,
+        "target": 31,
+        "value": 2256.961666
+      },
+      {
+        "source": 72,
+        "target": 32,
+        "value": 281.8555435
+      },
+      {
+        "source": 73,
+        "target": 61,
+        "value": 13.12202573
+      },
+      {
+        "source": 73,
+        "target": 62,
+        "value": 0.347726928
+      },
+      {
+        "source": 73,
+        "target": 63,
+        "value": 50.95902493
+      },
+      {
+        "source": 73,
+        "target": 64,
+        "value": 3751.434403
+      }
+    ]
+  }
+  
