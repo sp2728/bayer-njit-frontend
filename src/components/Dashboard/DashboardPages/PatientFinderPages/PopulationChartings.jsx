@@ -142,8 +142,16 @@ export class PopulationChartings extends React.Component{
 
     render(){
         return (
-            <div className="container-fluid">
-    
+            <div className="container-fluid population-chartings">
+                <div className="row">
+                    <div className="col-12 animate__animated animate__fadeInLeft animate__delay-2s">
+                        <h2>Patient Finder Chartings</h2>
+                    </div>
+                    <div className="col-12 animate__animated animate__fadeIn animate__delay-2s"><div className="hr-line"></div></div>
+                    <div className="col-12 animate__animated animate__fadeInLeft animate__delay-3s">
+                        <p><small><strong>Note</strong>: <span>{(/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent))?"Press & Hold":"Hover over"}</span> the <Tooltip title="Congrats! You are now seeing a sample detail. You can proceed to see other tooltips to know more info."><i className="fa fa-info"></i></Tooltip> tooltip icon to display more details.</small></p>
+                    </div>
+                </div>
                 {/* Treatment Charting Card */}
                 <div className="row">
                     <div className="col-12">
@@ -166,7 +174,7 @@ export class PopulationChartings extends React.Component{
                                                 
                                             ):(
                                                 <div style={{height:"100%", width:"100%", backgroundColor:"rgba(0,0,0,0.75)", position:"absolute",top:0, left:0, display:"flex", justifyContent:"center", alignItems:"center"}}>
-                                                    <p className="text-white">Chart is currently disabled! Please click <u>Update</u>! and Select the label of you want view from the select option below.</p>
+                                                    <p className="text-center text-white p-5 p-lg-1">Chart is currently disabled! Please click <u>Update</u>! and Select the label of you want view from the select option below.</p>
                                                 </div>
                                             )
                                         }
@@ -234,7 +242,7 @@ export class PopulationChartings extends React.Component{
                                                 ""
                                             ):(
                                                 <div style={{height:"100%", width:"100%", backgroundColor:"rgba(0,0,0,0.75)", position:"absolute",top:0, left:0, display:"flex", justifyContent:"center", alignItems:"center"}}>
-                                                    <p className="text-white">Chart is currently disabled! Please click <u>Update</u>! and Select the label of you want view from the select option below.</p>
+                                                    <p className="text-center text-white p-5 p-lg-1">Chart is currently disabled! Please click <u>Update</u>! and Select the label of you want view from the select option below.</p>
                                                 </div>
                                             )
                                         }

@@ -1,3 +1,9 @@
+.population-chartings h2{
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 500;
+    font-size: 160%;
+}
+
 .chart-card{
     width: 100%;
     min-height: 50px;
@@ -41,4 +47,44 @@
 }
 .chart-body{
     min-width: 500px;
+}
+
+
+
+@media only screen and (max-width: 480px){
+    .population-chartings h2{
+        font-size: 140%;
+    }
+    .population-chartings h3{
+        font-size: 120%;
+    }
+    .population-chartings p, .population-chartings label{
+        font-size: 90%;
+    }
+    
+}
+
+@media only screen and (max-width: 370px){
+    .population-chartings h2{
+        font-size: 120%;
+    }
+    .population-chartings h3{
+        font-size: 100%;
+    }
+    .population-chartings p, .population-chartings label{
+        font-size: 80%;
+    }
+    
+}
+
+@media only screen and (max-width: 325px){
+    .population-chartings h2{
+        font-size: 90%;
+    }
+    .population-chartings h3{
+        font-size: 80%;
+    }
+    .population-chartings p, .population-chartings label{
+        font-size: 12px;
+    }
 }

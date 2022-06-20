@@ -22,7 +22,7 @@ const navigationLinks = [{
     title: "Population Overview",
     link: "/dashboard/ckd/population/overview",
 },{
-    title: "Medication Sequence",
+    title: "Medication Sequencing",
     link: "/dashboard/ckd/medseq",
 },];
 
@@ -61,17 +61,17 @@ const FirstNavRow = (props) => {
 
     return (
         <div style={{backgroundColor: "rgb(35, 130, 181)"}} className="row animate__animated animate__fadeInDown animate__delay-1s">
-            <div className="col-7 col-md-6 col-lg-7 pt-2 pt-md-0">
+            <div className="col-12 col-sm-7 col-md-6 col-lg-7 my-1 my-md-0 pt-md-0 text-center text-sm-start">
                 <div id="nav-logo">
                     <img style={{height: "100%", width: "auto"}} src={logo} alt="" />
                 </div>
                 <h1 style={{display: "inline-block", marginLeft: "10px", paddingTop: "8px"}}>CKD Population Navigator</h1>
             </div>
-            <div className="col-5 col-md-6 col-lg-5 px-1 px-md-3 text-end">
+            <div className="col-13 col-sm-5 col-md-6 col-lg-5 my-0 my-sm-1 my-md-0 pt-md-0 px-1 px-md-3 text-center text-sm-end">
                 <p className="display-none-md user-greetings">Hello {Cookies.get("fullName")},</p>
-                <IconButton onClick={(e)=>{handleClick(e)}} size="small" sx={{ display: "inline-block" ,ml: 0 }}>
+                <IconButton id="acct-btn" onClick={(e)=>{handleClick(e)}} size="small" sx={{ display: "inline-block" ,ml: 0 }}>
                     <Avatar sx={{ width: 32, height: 32 }}><i className="fas fa-user" aria-hidden="true"></i></Avatar>
-                </IconButton>
+                </IconButton><label htmlFor="acct-btn" className="display-inline-md-none px-2">&nbsp;<small>Your Account</small></label>
 
                 <Menu anchorEl={anchorEl} open={open} onClose={handleClose} onClick={handleClose}
                     PaperProps={{
@@ -115,38 +115,61 @@ const FirstNavRow = (props) => {
     );
 }
 
-export const NavigationBar = (props)=>{
-    const [isNavToggleActive, setIsNavToggleActive] = useState(false);
-    
-    return (
-        <nav className="container-fluid">
-            <FirstNavRow logoutRerender={props.logoutRerender}/>
-            
-            {/* Dashboard Navigation Second Row */}
-            <div style={{backgroundColor: "#f7f1e3"}} className="row nav-links animate__animated animate__fadeIn animate__delay-1s">
-                <div className="col-12 display-md-none nav-mobile-bar p-1">
-                    <button id="nav-mobbar-btn" style={{transition: "transform 0.5s",background:"none", outline:"none", border: "none", padding: "1px 30px 2px 30px"}} onClick={(e)=>{
-                        setIsNavToggleActive(!isNavToggleActive);
-                        document.getElementById('nav-mobbar-btn').style.transform = `rotate(${isNavToggleActive?0:180}deg)`;
-                    }}>
-                        <i className="fa fa-bars" aria-hidden="true"></i>
-                    </button>
+export class NavigationBar extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            isNavToggleActive: false
+        }
+        this.clickDetect = this.clickDetect.bind(this);
+    }
+
+    clickDetect(event){
+        if(!$(event.target).closest("nav").length){
+            this.setState({isNavToggleActive: false})
+        }
+    }
+
+
+    componentDidMount(){
+        document.addEventListener("click", this.clickDetect);
+    }
+
+    componentWillUnmount(){
+        document.removeEventListener("click", this.clickDetect);
+    }
+
+    render(){
+        return (
+            <nav className="container-fluid">
+                <FirstNavRow logoutRerender={this.props.logoutRerender}/>
+                
+                {/* Dashboard Navigation Second Row */}
+                <div style={{backgroundColor: "#f7f1e3"}} className="row nav-links animate__animated animate__fadeIn animate__delay-1s">
+                    <div className="col-12 display-md-none nav-mobile-bar p-1">
+                        <button id="nav-mobbar-btn" style={{transition: "transform 0.5s",background:"none", outline:"none", border: "none", padding: "1px 30px 2px 30px"}} onClick={(e)=>{
+                            this.setState({isNavToggleActive: !this.state.isNavToggleActive});
+                            document.getElementById('nav-mobbar-btn').style.transform = `rotate(${this.state.isNavToggleActive?0:180}deg)`;
+                        }}>
+                            <i className="fa fa-bars" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <div className={"col-12 col-md-12 pt-2 pt-md-0 nav-md-toggler "+((this.state.isNavToggleActive)?"open":"")}>
+                        <ol>
+                            {navigationLinks.map((e)=>{
+                                return (
+                                    <li key={e.title}>
+                                        {/* Links on Navigation Bar and also handing decision for present the page user is on by styling navigation links */}
+                                        <Link to={e.link} className={(e.title===linkToNavTitleMapping[window.location.pathname])?"active":""}>{e.title}</Link>
+                                    </li>
+                                );
+                            })}
+                        </ol>
+                    </div>
                 </div>
-                <div className={"col-12 col-md-12 pt-2 pt-md-0 nav-md-toggler "+((isNavToggleActive)?"open":"")}>
-                    <ol>
-                        {navigationLinks.map((e)=>{
-                            return (
-                                <li key={e.title}>
-                                    {/* Links on Navigation Bar and also handing decision for present the page user is on by styling navigation links */}
-                                    <Link to={e.link} className={(e.title===linkToNavTitleMapping[window.location.pathname])?"active":""}>{e.title}</Link>
-                                </li>
-                            );
-                        })}
-                    </ol>
-                </div>
-            </div>
-        </nav>
-    );
+            </nav>
+        );       
+    }
 }
 
 
@@ -200,7 +223,7 @@ class Dashboard extends React.Component{
                             
                             <Route exact path="/dashboard" component={Introduction} />
                             <Route exact path="/dashboard/ckd" component={Introduction} />
-                            <Route exact path="/dashboard/ckd/intro" component={Introduction} />
+                            <Route path="/dashboard/ckd/intro" component={Introduction} />
                             <Route path="/dashboard/ckd/patientfinder" component={PatientFinder} />
                             <Route exact path="/dashboard/ckd/population/overview" component={PopulationOverview} />
                             <Route exact path="/dashboard/ckd/medseq" component={MedicalSequencing}></Route>

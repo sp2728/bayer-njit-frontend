@@ -1,0 +1,33 @@
+.intro h2{
+    font-size: 28px;
+}
+
+.intro h3{
+    font-size: 22px;
+}
+.intro p{
+    text-align: justify;
+}
+
+.intro>.row{
+    padding: 10px;
+}
+.intro>.row::after{
+    display: block;
+    content: " ";
+    width: 100px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: rgb(124, 124, 124);
+    margin: 25px auto;
+}
+
+.intro .study-design-img{
+    width: 600px;
+}
+
+@media screen and (max-width: 610px){
+    .intro .study-design-img{
+        width: 100%;
+    }
+}

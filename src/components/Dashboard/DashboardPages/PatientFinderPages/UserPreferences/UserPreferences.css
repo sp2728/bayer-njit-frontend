@@ -1,3 +1,7 @@
 .pref-check .checkbox-grid{
     width: 100%;
 }
+
+.scrollable-card{
+    transition: padding-top 0.7s;
+}

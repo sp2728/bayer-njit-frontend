@@ -130,7 +130,6 @@ const groupBy = function (arr, criteria) {
     }));
   
     let datos = { nodes: nodes, links: link1.concat(link2) };
-    console.log("sankey", datos);
     return datos;
   }
   

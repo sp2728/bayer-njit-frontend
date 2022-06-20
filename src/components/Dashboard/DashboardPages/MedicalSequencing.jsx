@@ -32,7 +32,22 @@ export class MedicalSequencing extends React.Component {
     render(){        
 
         return (
-            <div style={{paddingTop:"20vh", paddingBottom:"50px", minHeight: "100vh"}} className="container medical-sequencing">
+            <div style={{paddingBottom:"50px", minHeight: "100vh"}} className="container medical-sequencing">
+                <div className="row animate__animated animate__fadeIn animate__delay-1s">
+                    <div className="col-12 text-center">
+                        <h2>Medication Sequencing Chartings</h2>
+                    </div>
+                </div>
+                <div className="row animate__animated animate__fadeIn animate__delay-1s">
+                    <div className="col-12">
+                        <div className="hr-line"></div>
+                    </div>
+                </div>
+                <div className="row animate__animated animate__fadeIn animate__delay-1s">
+                    <div className="col">
+                        <p><small><strong>Note</strong>: <span>{(/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent))?"Press & Hold":"Hover over"}</span> the <Tooltip title="Congrats! You are now seeing a sample detail. You can proceed to see other tooltips to know more info."><i className="fa fa-info"></i></Tooltip> tooltip icon to display more details.</small></p>
+                    </div>
+                </div>
                 <div className="row chart-card p-4 animate__animated animate__fadeInLeft animate__delay-1s">
                     <div className="col-12">
                         <h3>Patient Filters</h3>
@@ -41,7 +56,7 @@ export class MedicalSequencing extends React.Component {
                         <FormGroup className="formGroup">
                             <FormLabel className="formLabel">
                                 Age&nbsp;
-                                <Tooltip title="Select age groups that is included in below Medical Sequencing Sankey Diagram.">
+                                <Tooltip title="Select age groups that is included in below Medication Sequencing Sankey Diagram.">
                                     <i className='fas fa-info-circle'></i>
                                 </Tooltip>
                             </FormLabel>
@@ -83,7 +98,7 @@ export class MedicalSequencing extends React.Component {
                         <FormGroup className="formGroup">
                             <FormLabel className="formLabel">
                                 Region&nbsp;
-                                <Tooltip title="Select US-based regions whose patients need to be included in below Medical Sequencing Sankey Diagram.">
+                                <Tooltip title="Select US-based regions whose patients need to be included in below Medication Sequencing Sankey Diagram.">
                                     <i className='fas fa-info-circle'></i>
                                 </Tooltip>
                             </FormLabel>
@@ -99,11 +114,6 @@ export class MedicalSequencing extends React.Component {
                                 isMulti
                             />
                         </FormGroup>
-                    </div>
-                </div>
-                <div className="row animate__animated animate__fadeIn animate__delay-1s">
-                    <div className="col-12">
-                        <div className="hr-line"></div>
                     </div>
                 </div>
                 <div className="row chart-card p-4 animate__animated animate__fadeInRight animate__delay-1s">
@@ -184,7 +194,7 @@ export class MedicalSequencing extends React.Component {
                 </div>
                 <div style={{maxWidth:"100%", overflowX:"auto"}} className="row chart-card p-4 animate__animated animate__fadeIn animate__delay-1s">
                     <div  className="col-12">
-                        <h3>Medical Sequencing diagram</h3>
+                        <h3>Medication Sequencing diagram</h3>
                         <p><small>Note: This feature is currently under development. The diagram presented below is just for demonstration.</small></p>
                     </div>
                     <div  className="col-12">

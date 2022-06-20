@@ -16,7 +16,7 @@ export const NotFound = (props)=>{
                         </div>
                         <div className="row py-5 text-center">
                             <div className="col-12">
-                                <img style={(screen.width<769)?{width: "300px", height: "300px"}:{width: "150px", height: "150px"}} src={logo} alt="Bayer Logo" />
+                                <img className="responsive-logo" src={logo} alt="Bayer Logo" />
                             </div>
                         </div>
                         <div className="row text-center mb-5">

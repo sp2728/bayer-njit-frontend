@@ -124,6 +124,8 @@ class SidePanel extends React.Component{
 
             isUpdateButtonDisabled: true,
 
+            sidebarClickDetector: null,
+
             labelError: false, /* For notifying API related errors ... */
         }
 
@@ -134,8 +136,18 @@ class SidePanel extends React.Component{
         this.sendFilterDataToGraph = this.sendFilterDataToGraph.bind(this);
         this.refreshPreference=this.refreshPreference.bind(this);
         this.savePreferences=this.savePreferences.bind(this);
+        this.clickDetect=this.clickDetect.bind(this);
     }
     
+    clickDetect(event){
+        if(!$(event.target).closest(".sidebar-form").length){
+            this.setState({isSidebarToggleActive: false},()=>{
+                this.props.setSidebarOpen(this.state.isSidebarToggleActive);
+            });
+        }
+    }
+
+
     componentDidMount(){
         
         /* Fetching API data */
@@ -171,7 +183,17 @@ class SidePanel extends React.Component{
         });
 
         this.refreshPreference()
+        
+        
 
+        const clickDetector = document.addEventListener("click", this.clickDetect);
+        this.setState({
+            sidebarClickDetector: clickDetector
+        })
+    }
+
+    componentWillUnmount(){
+        document.removeEventListener("click", this.clickDetect)
     }
 
     refreshPreference(){
@@ -210,7 +232,6 @@ class SidePanel extends React.Component{
     }
 
     savePreferences(preferenceId){
-
         if(preferenceId>0){
             try{
                 const preferenceData = this.state.userPreferenceList.filter(e=>e.id==preferenceId)[0]
@@ -245,6 +266,7 @@ class SidePanel extends React.Component{
             } catch (err){
                 this.props.showMessage(1, "Please create atleast one preference by '+ Create New Preferences'!");
                 setTimeout(()=>{this.props.showMessage(0, "")},15000);
+                console.log(this.state.userPreferenceList);
             }
         }else{
             this.props.showMessage(1, "Please create atleast one preference by '+ Create New Preferences'!");
@@ -320,34 +342,40 @@ class SidePanel extends React.Component{
         
         e.preventDefault();
         document.getElementById("dash").scrollTop=0;
-        this.props.updateGraph({
-            "group_condition": {
-                "group_by": this.state.groupByType,
-                "selection": this.state.groupBy,
-            },
-            "states": Array.from(this.state.selectedStateLabelData),
-            "medical_conditions": {
-                "labels": [], /* Getting labels from graph display side component of Patient Finde*/
-                "OR": Array.from(this.state.selectedMedicalConditionORLabelData),
-                "AND": Array.from(this.state.selectedMedicalConditionANDLabelData)
-            },
-            "treatments": {
-                "labels": [], /* Getting labels from graph display side component of Patient Finde*/
-                "OR": Array.from(this.state.selectedTreatmentORLabelData),
-                "AND": Array.from(this.state.selectedTreatmentANDLabelData)
-            }
-        })
+
+        this.setState({
+            isSidebarToggleActive: false
+        },()=>{
+            this.props.setSidebarOpen(this.state.isSidebarToggleActive);
+            this.props.updateGraph({
+                "group_condition": {
+                    "group_by": this.state.groupByType,
+                    "selection": this.state.groupBy,
+                },
+                "states": Array.from(this.state.selectedStateLabelData),
+                "medical_conditions": {
+                    "labels": [], /* Getting labels from graph display side component of Patient Finde*/
+                    "OR": Array.from(this.state.selectedMedicalConditionORLabelData),
+                    "AND": Array.from(this.state.selectedMedicalConditionANDLabelData)
+                },
+                "treatments": {
+                    "labels": [], /* Getting labels from graph display side component of Patient Finde*/
+                    "OR": Array.from(this.state.selectedTreatmentORLabelData),
+                    "AND": Array.from(this.state.selectedTreatmentANDLabelData)
+                }
+            })
+        });
     }
 
     render(){
         return (
             <form onSubmit={this.sendFilterDataToGraph} action="post" className={"container-fluid pb-5 sidebar-form"}>
                 <div className="row">
-                    <div className={((this.state.isSidebarToggleActive)?"open":"")+" pt-5 col-12 side-panel-content"}>
+                    <div className={((this.state.isSidebarToggleActive)?"open":"")+" pt-5 col-12 side-panel-content animate__animated animate__fadeIn animate__delay-2s"}>
 
                         <div className="display-lg-none button-bar row pb-5">
                             <div className="col text-right">
-                                <button id="side-mobbar-btn" style={{transition: "transform 0.5s",background:"none", outline:"none", border: "none"}} onClick={(e)=>{
+                                <button type="button" id="side-mobbar-btn" style={{transition: "transform 0.5s",background:"none", outline:"none", border: "none"}} onClick={(e)=>{
                                     this.setState({isSidebarToggleActive: !this.state.isSidebarToggleActive},()=>{
                                         this.props.setSidebarOpen(this.state.isSidebarToggleActive);
                                     });
@@ -365,6 +393,12 @@ class SidePanel extends React.Component{
                             </div>
                         </div>
 
+                        <div className="row py-2">
+                            <div className="col">
+                                <p><small><strong>Note</strong>: <span>{(/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent))?"Press & Hold":"Hover over"}</span> the <Tooltip title="Congrats! You are now seeing a sample detail. You can proceed to see other tooltips to know more info."><i className="fa fa-info"></i></Tooltip> tooltip icon to display more details.</small></p>
+                            </div>
+                        </div>
+
                         {/* Preferences */}
                         <div className="row">
                             <div className="col">
@@ -375,7 +409,7 @@ class SidePanel extends React.Component{
                                     </Tooltip> &nbsp;
                                     <div style={{display: "inline-block", float: "right"}}>
                                         <Tooltip title="Refresh Preference list if you donot see any of your recently created/updated preference name">
-                                            <button style={{border: "none", fontSize:"13px"}} onClick={(e)=>{e.preventDefault(); this.refreshPreference()}}>
+                                            <button type="button" style={{border: "none", fontSize:"13px"}} onClick={(e)=>{e.preventDefault(); this.refreshPreference()}}>
                                                 <small>Refresh</small> <i className="fa fa-refresh" aria-hidden="true"></i>
                                             </button>
                                         </Tooltip>

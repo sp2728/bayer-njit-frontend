@@ -62,9 +62,9 @@ const Login = (props)=>{
                 // console.log(error.response.data); // TODO: show a pop-up for user's consent to send error data to server
 
             } catch(err) {
-                console.log(error); // TODO: show a pop-up for user's consent to send error data to server
+                //console.log(error); // TODO: show a pop-up for user's consent to send error data to server
 
-                props.setMessage(-1, "There seem's to be a technical error somewhere. Please Try again later!");
+                props.setMessage(-1, "A technical error has been detected!. Please Try again later.");
             }
             
             
@@ -191,7 +191,7 @@ class SignUp extends React.Component {
                 // console.log(error.response.data); // TODO: show a pop-up for user's consent to send error data to server
 
             } catch(err) {
-                console.log(error); // TODO: show a pop-up for user's consent to send error data to server
+                //console.log(error); // TODO: show a pop-up for user's consent to send error data to server
 
                 this.props.setMessage(-1, "There seem's to be a technical error somewhere. Please Try again later!");
             }

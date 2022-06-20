@@ -5,7 +5,6 @@ import * as d3 from 'd3';
 
 const NewSankeyDiagram = ({ data }) => {
 
-    console.log(data);
     const svgRef = useRef();
 
     const margin = { top: 10, right: 10, bottom: 10, left: 10 };
@@ -42,7 +41,6 @@ const NewSankeyDiagram = ({ data }) => {
             .enter().append("g")
             .attr("class", "node")
             .attr("transform", function (d) {
-                console.log(d)
                 return "translate(" + (d.x0) + "," + (d.y0) + ")";
             })
             // .call(d3.drag()

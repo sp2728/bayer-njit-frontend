@@ -1,33 +1,102 @@
-.introduction h2{
-    font-size: 28px;
+.intro h2{
+    font-size: 160%;
+    font-weight: 500;
 }
-
-.introduction h3{
-    font-size: 22px;
+.intro h3{
+    font-size: 130%;
+    font-weight: 700;
 }
-.introduction p{
+.intro h2, .intro h3 {
+    font-family: 'Montserrat', sans-serif;   
+}
+.intro ul{
     text-align: justify;
 }
 
-.introduction>.row{
-    padding: 10px;
+.intro-nav ul{
+    list-style: none;
+    padding-top: 10px;
 }
-.introduction>.row::after{
-    display: block;
-    content: " ";
-    width: 100px;
-    height: 4px;
-    border-radius: 50%;
-    background-color: rgb(124, 124, 124);
-    margin: 25px auto;
+.intro-nav ul li{
+    display: inline-block;
+    margin: 2px 20px;
+}
+.intro-nav ul li a{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    border-bottom: 1px solid transparent;
+}
+.intro-nav ul li:hover a{
+    color: rgb(46, 25, 25);
+    border-bottom: 1px solid rgb(33, 18, 18);
 }
 
-.introduction .study-design-img{
-    width: 600px;
+.intro-nav ul li.active a{
+    color: black;
+    font-weight: bold;
+    border-bottom: 1px solid rgb(33, 18, 18);
+}
+.medseq-ec-and{
+    text-indent: 150px;
 }
 
-@media screen and (max-width: 610px){
-    .introduction .study-design-img{
-        width: 100%;
+@media only screen and (max-width: 480px){
+    .intro a, .intro i{
+        font-size: 100%;
     }
+    .intro h2{
+        font-size: 140%;
+    }
+    .intro h3{
+        font-size: 120%;
+    }
+    .intro ul,p{
+        font-size: 90%;
+    }
+    .medseq-ec-and{
+        text-indent: 0px;
+        text-align: center;
+    }
+    
+}
+
+@media only screen and (max-width: 370px){
+    .intro-nav ul{
+        font-size: 85%;
+    }
+    .intro a, .intro i{
+        font-size: 90%;
+    }
+    .intro h2{
+        font-size: 120%;
+    }
+    .intro h3{
+        font-size: 100%;
+    }
+    .intro ul,p{
+        font-size: 80%;
+    }
+    
+}
+
+@media only screen and (max-width: 325px){
+    .intro-nav ul{
+        font-size: 75%;
+    }
+    .intro a, .intro i{
+        font-size: 65%;
+    }
+    .intro h2{
+        font-size: 90%;
+    }
+    .intro h3{
+        font-size: 80%;
+    }
+    .intro ul{
+        font-size: 85%;
+    }
+    .intro p, #oacdb ul, #patient-selection ul, #medseq-inclusion-criteria ul, #medseq-exclusion-criteria ul{
+        font-size: 12px;
+    }
+    
 }

@@ -32,7 +32,7 @@ export class NavigationBar extends React.Component{
 /** Renders Footer with Copyright condition and important product details */
 export const Footer = (props)=>{
     return (
-        <div style={{color:"#ddd"}} className="container-fluid bg-dark">
+        <footer style={{color:"#ddd", zIndex: 99}} className="container-fluid bg-dark">
             <div className="row">
                 <div className="col p-3 text-center">
                     <small>
@@ -42,7 +42,7 @@ export const Footer = (props)=>{
                     </small>
                 </div>
             </div>
-        </div>
+        </footer>
     );
 }
 

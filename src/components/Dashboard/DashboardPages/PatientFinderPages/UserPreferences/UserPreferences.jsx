@@ -156,6 +156,8 @@ export class UserPreferences extends React.Component{
             defaultPreference: -1,
             selectedPreference: -1,
 
+            scrollingElement: document.getElementsByClassName("display-area")[0],
+
             labelError: false,
         }
         this.viewPreferences = this.viewPreferences.bind(this);
@@ -163,7 +165,21 @@ export class UserPreferences extends React.Component{
         this.createPreferences = this.createPreferences.bind(this);
         this.removePreferences = this.removePreferences.bind(this);
         this.getPreferenceForm = this.getPreferenceForm.bind(this);
+        this.scrollSettings = this.scrollSettings.bind(this);
     }
+
+    scrollSettings(e){
+        try{
+            this.setState({paddingTop: (window.innerWidth>767.98 && this.state.scrollingElement.scrollTop>125)?this.state.scrollingElement.scrollTop-90:0});
+        } catch(e){
+            this.setState({scrollingElement: document.getElementsByClassName("display-area")[0]}, ()=>{
+                this.scrollSettings(e);
+            })
+        }
+        
+    }
+
+
     componentDidMount(){
         getStateLabels(Cookies.get('userid'), Cookies.get('authToken')).then((response)=>{
             if(response.data.success===1){/* On Success read state data */
@@ -195,6 +211,11 @@ export class UserPreferences extends React.Component{
         });
 
         this.viewPreferences();
+
+        document.getElementsByClassName("display-area")[0].addEventListener("scroll",this.scrollSettings)
+    }
+    componentWillUnmount(){
+        document.getElementsByClassName("display-area")[0].removeEventListener("scroll",this.scrollSettings)
     }
 
     viewPreferences(){
@@ -332,12 +353,17 @@ export class UserPreferences extends React.Component{
         return (
             <div className="container-fluid px-4 pb-5">
                 <div className="row">
-                    <div className="col-12 pb-4">
+                    <div className="col-12 pb-4 animate__animated animate__fadeInLeft">
                         <Link style={{textDecoration:"none"}} to="/dashboard/ckd/patientfinder"> <i className="fas fa-chevron-left"></i> &nbsp; Go Back to Patient Finder Charting Page</Link>
                     </div>
                 </div>
                 <div className="row">
-                    <div className={"col-12 col-md-5 order-"+((isCreateFirst)?"1":"2")}>
+                    <div className="col-12 animate__animated animate__fadeInLeft animate__delay-2s">
+                        <p><small><strong>Note</strong>: <span>{(/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent))?"Press & Hold":"Hover over"}</span> the <Tooltip title="Congrats! You are now seeing a sample detail. You can proceed to see other tooltips to know more info."><i className="fa fa-info"></i></Tooltip> tooltip icon to display more details.</small></p>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className={"col-12 col-md-5 animate__animated animate__fadeInUp animate__delay-1s order-"+((isCreateFirst)?"1":"2")}>
                         <div className="chart-card" style={{overflowX:"hidden"}}>
                             <div className="row p-3">
                                 <div className="col-12">
@@ -347,7 +373,7 @@ export class UserPreferences extends React.Component{
                             {this.getPreferenceForm()}
                         </div>
                     </div>
-                    <div className={"col-12 col-md-7 order-"+((isCreateFirst)?"2":"1")}>
+                    <div style={{paddingTop: this.state.paddingTop}} className={"col-12 col-md-7 scrollable-card animate__animated animate__fadeInUp animate__delay-2s order-"+((isCreateFirst)?"2":"1")}>
                         <div className="chart-card">
                             <table className="table table-responsive">
                                 <thead className="table-dark">

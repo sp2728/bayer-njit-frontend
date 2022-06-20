@@ -21,9 +21,11 @@ const PieChart = (props) => {
         let mouseOver = function (event, d) {
             tooltip
             .style("opacity", 1)
-            .html(`${d.data[0]}:${d.data[1]}`)
+            .style("font-size", "80%")
+            .html(`${d.data[0]}: ${d.data[1]} patients`)
             .style("left", (event.pageX) + "px")
-            .style("top", (event.pageY-80) + "px")
+            .style("top", (event.pageY-40) + "px")
+            .style("width", "150" + "px")
 
             svg.selectAll(".pie")
                 .transition()
@@ -86,12 +88,12 @@ const PieChart = (props) => {
             .text(function (d) { return d.data[0] })
             .attr("transform", function (d) { return `translate(${arcGenerator.centroid(d)})` })
             .style("text-anchor", "middle")
-            .style("font-size", 13)
+            .style("font-size", "80%")
     })
 
     return (
         <div id="pieChart" align={(screen.availWidth>325)?"center":"left"}>
-            <h3> Patient Cohorts </h3>
+            <h3 className="p-2" style={{fontSize: "130%"}}> Patient Cohorts </h3>
             <div id="pieChartContainer"></div>
             <div className="tooltip"></div>
             <div className="col-12 offset-md-7 col-md-5 text-start p-2">

@@ -207,7 +207,7 @@ class GeoChart extends React.Component{
                         </svg>
                         {
                             (!this.state.isPatientFinderDefApplied)?(
-                                <div id="map-blocker" key="map-show-blocker" style={{display:"flex"}} className="text-center map-blocker">
+                                <div id="map-blocker" key="map-show-blocker" style={{display:"flex"}} className="p-3 text-center map-blocker">
                                     <p>This Map is currently disabled. Please apply the Patient Finder definition on the right and Click on <strong><u>Update</u></strong> to see any changes</p>
                                 </div>      
                             ):("")

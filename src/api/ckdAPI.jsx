@@ -65,11 +65,6 @@ export const getLabels = async (userid, authToken) => {
 }
 /* --- Dashboard functionality --- */
 export const getStatesData = async (userid, authToken, jsonData) => {
-    console.log({
-        userid,
-        authToken,
-        jsonData,
-    });
     return (
         await axios.post(backendURL+'/patientfinder/states/population', {
             userid,
