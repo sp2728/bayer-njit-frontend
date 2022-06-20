@@ -25,6 +25,9 @@ const navigationLinks = [{
         title: "Population Overview",
         link: "/dashboard/ckd/population/overview"
     }, {
+        title: "State Infographics",
+        link: "/dashboard/ckd/stateinfographic"
+    },{
         title: "My Preferences",
         link: "/dashboard/ckd/patientfinder/preferences/view"
     }, {
@@ -44,6 +47,9 @@ const navigationLinks = [{
         title: "About Medication Sequencing",
         link: "/dashboard/ckd/intro/medseq"
     }]
+},{
+    title: "Kidney Testing",
+    link: "/dashboard/ckd/kidneytesting"
 },];
 
 const linkToNavTitleMapping = {};
@@ -135,6 +141,7 @@ const FirstNavRow = (props) => {
                         <MenuItem onClick={showViewPreference}><ListItemIcon> <i className="fa fa-wrench" aria-hidden="true"></i> </ListItemIcon> My Preferences</MenuItem>
                         <MenuItem onClick={showCreatePreference}><ListItemIcon><i className="fa fa-plus" aria-hidden="true"></i></ListItemIcon> Create New Preference </MenuItem>
                     <Divider />
+                    <MenuItem onClick={()=>{props.showAboutHandler()}}><ListItemIcon><i className="fa fa-info" aria-hidden="true"></i></ListItemIcon> About </MenuItem>
                     <MenuItem onClick={logoutFn}><ListItemIcon><i className="fa fa-sign-out" aria-hidden="true"></i></ListItemIcon> Logout </MenuItem>
                 </Menu>
             </div>
@@ -169,7 +176,7 @@ export class NavigationBar extends React.Component{
     render(){
         return (
             <nav className="container-fluid">
-                <FirstNavRow logoutRerender={this.props.logoutRerender}/>
+                <FirstNavRow logoutRerender={this.props.logoutRerender} showAboutHandler={this.props.showAboutHandler} />
                 
                 {/* Dashboard Navigation Second Row */}
                 <div style={{backgroundColor: "#f7f1e3"}} className="row nav-links animate__animated animate__fadeIn animate__delay-1s">
@@ -220,6 +227,7 @@ class Dashboard extends React.Component{
         super(props)
         this.state = {
             isLoading: true,
+            displayAbout: false,
             access: false,
         }
         this.checkAccess = this.checkAccess.bind(this);
@@ -257,7 +265,35 @@ class Dashboard extends React.Component{
         } else if(!this.state.isLoading && this.state.access){
             return (
                 <div className="dashboard">
-                    <NavigationBar logoutRerender={this.logoutRerender} />
+                    <NavigationBar logoutRerender={this.logoutRerender} showAboutHandler={()=>{this.setState({displayAbout:true})}} />
+                    {
+                        (this.state.displayAbout)?(
+                            <div className="about-model">
+                                <div className="model-box-container">
+                                    <div style={{position: "relative"}} className="model-box p-3">
+                                        <div style={{position: "absolute", right: 20, top: 10, fontSize: 20}}>
+                                            <button onClick={()=>{this.setState({displayAbout: false})}} style={{outline: "none", border: "none", background: "none"}}>
+                                                <i className="fa fa-times"></i>
+                                            </button>
+                                        </div>
+                                        <h2 style={{fontSize: "170%", fontFamily:"Montserrat, san-serif", fontWeight: 500}} className="text-center">About</h2>
+                                        <div className="hr-line"></div>
+                                        <p style={{textAlign:"justify"}}>
+
+                                            <strong>CKD Population Navigator</strong> is an internal research tool. CKD Population Navigator is a data visualization and analytics tool based upon the results of a retrospective, cross-sectional analysis of the Optum Administrative 
+                                            claims database to describe the <strong>Chronic Kidney Disease</strong> and <strong>Type 2 Diabetes</strong> patient landscape within the database in the year 2019. The tool allows users to explore 
+                                            the following characteristics in the type 2 diabetes (T2D), chronic kidney disease (CKD), and CKD and T2D populations: demographic, clinical (i.e., events, comorbidities), 
+                                            medication use, and kidney labs.
+                                        </p>
+                                        <div className="hr-line"></div>
+                                        <p className="text-center">
+                                            <small>&copy; Copyright 2022 Bayer | All rights reserved</small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        ):""
+                    }
                     <div style={{minHeight: "100vh"}}>
                         <Switch>
                             
@@ -266,6 +302,12 @@ class Dashboard extends React.Component{
                             <Route path="/dashboard/ckd/intro" component={Introduction} />
                             <Route path="/dashboard/ckd/patientfinder" component={PatientFinder} />
                             <Route exact path="/dashboard/ckd/population/overview" component={PopulationOverview} />
+                            <Route exact path="/dashboard/ckd/stateinfographic" component={PopulationOverview} >
+                                <UnderMaintainance showNav={false} />
+                            </Route>
+                            <Route exact path="/dashboard/ckd/kidneytesting" component={PopulationOverview} >
+                                <UnderMaintainance showNav={false} />
+                            </Route>
                             <Route exact path="/dashboard/ckd/medseq" component={MedicalSequencing}></Route>
                             {/* <UnderMaintainance showNav={false} /> */}
                             <Route path="*"><Redirect to="/not-found" /></Route>

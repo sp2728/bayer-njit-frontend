@@ -87,6 +87,26 @@
     color: rgb(68, 68, 68);
     text-decoration: underline;
 }
+.dashboard .about-model{
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.238);
+    height: 100vh;
+    width: 100vw;
+}
+.dashboard .model-box-container{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.dashboard .model-box-container>.model-box{
+    max-height: 60%;
+    min-width: 40%;
+    max-width: 60%;
+    overflow: auto;
+    background-color: white;
+}
 
 .dashboard nav h1{
     font-family: 'Montserrat', sans-serif;
@@ -142,7 +162,7 @@
         background-color: rgb(150, 156, 159);
         border-radius: 20px;
     }
-    
+
     .display-md-none{
         display: block;
     }
