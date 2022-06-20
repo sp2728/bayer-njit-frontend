@@ -18,16 +18,43 @@ const navigationLinks = [{
 },{
     title: "Patient Finder",
     link: "/dashboard/ckd/patientfinder",
-},{
-    title: "Population Overview",
-    link: "/dashboard/ckd/population/overview",
+    sublinks: [{
+        title: "Patient Finder Chartings",
+        link: "/dashboard/ckd/patientfinder",
+    },{
+        title: "Population Overview",
+        link: "/dashboard/ckd/population/overview"
+    }, {
+        title: "My Preferences",
+        link: "/dashboard/ckd/patientfinder/preferences/view"
+    }, {
+        title: "Create Preferences",
+        link: "/dashboard/ckd/patientfinder/preferences/new"
+    }, {
+        title: "About Patient Finder",
+        link: "/dashboard/ckd/intro/patientfinder"
+    }]
 },{
     title: "Medication Sequencing",
     link: "/dashboard/ckd/medseq",
+    sublinks: [{
+        title: "Medication Sequencing Chartings",
+        link: "/dashboard/ckd/medseq",
+    }, {
+        title: "About Medication Sequencing",
+        link: "/dashboard/ckd/intro/medseq"
+    }]
 },];
 
 const linkToNavTitleMapping = {};
-navigationLinks.map((e)=>{return (linkToNavTitleMapping[e.link] = e.title);})
+navigationLinks.map((e)=>{
+    if(e.sublinks && e.sublinks.length>0){
+        e.sublinks.map((element,index)=>{
+            return (linkToNavTitleMapping[element.link] = element.title);
+        })
+    }
+    return (linkToNavTitleMapping[e.link] = e.title);
+})
 
 /** Renders Dashboard's first row of navigation bar */
 const FirstNavRow = (props) => {
@@ -78,7 +105,7 @@ const FirstNavRow = (props) => {
                         elevation: 0,
                         sx: {
                             overflow: 'visible',
-                            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                            boxShadow: "0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)",
                             mt: 1.5,
                             '& .MuiAvatar-root': {
                                 width: 32,
@@ -155,12 +182,25 @@ export class NavigationBar extends React.Component{
                         </button>
                     </div>
                     <div className={"col-12 col-md-12 pt-2 pt-md-0 nav-md-toggler "+((this.state.isNavToggleActive)?"open":"")}>
-                        <ol>
+                        <ol className="custom-nav">
                             {navigationLinks.map((e)=>{
                                 return (
                                     <li key={e.title}>
                                         {/* Links on Navigation Bar and also handing decision for present the page user is on by styling navigation links */}
-                                        <Link to={e.link} className={(e.title===linkToNavTitleMapping[window.location.pathname])?"active":""}>{e.title}</Link>
+                                        <Link to={e.link} className={(e.title===linkToNavTitleMapping[window.location.pathname])?"active":""}>{e.title}</Link> {(e.sublinks && e.sublinks.length>0)?<i className="fa fa-chevron-down text-black"></i>:""}
+                                        {
+                                            (e.sublinks && e.sublinks.length>0)?(
+                                                <ul className="custom-nav-dropdown">
+                                                    {e.sublinks.map((element, index)=>{
+                                                        return (
+                                                            <li key={element.title}>
+                                                                <Link to={element.link} className={(element.title===linkToNavTitleMapping[window.location.pathname])?"active":""}>{element.title}</Link>
+                                                            </li>
+                                                        );
+                                                    })}
+                                                </ul>
+                                            ):""
+                                        }
                                     </li>
                                 );
                             })}

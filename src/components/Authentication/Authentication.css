@@ -176,6 +176,22 @@ form h2::after{
     font-size: 100%;
 }
 
+@media only screen and (min-height: 480px) and (max-width: 992px){
+    .auth-content{
+        height: unset;
+        min-height: unset;
+    }
+}
+
+@media only screen and (max-width: 1480px){
+    .bg-container{
+        background-color: #bbdaebff;
+    }
+    .bg-container>*{
+        visibility: hidden;
+    }
+}
+
 @media only screen and (max-width: 1198.98px) {
     .authentication .title{
         margin-top: 30%;
@@ -214,6 +230,15 @@ form h2::after{
 @media only screen and (max-width: 480px){
     .form-region{
         max-height: 300px;
+    }
+}
+
+@media only screen and (max-height: 680px){
+    .bg-container{
+        background-color: #bbdaebff;
+    }
+    .bg-container>*{
+        visibility: hidden;
     }
 }
 @media only screen and (max-height: 480px){

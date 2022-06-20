@@ -126,10 +126,10 @@ export const MedicalSequencingIntro = ()=>{
                         <div style={{display:"inline-block"}} className="col-12 col-md-6">
                             <h2 id="medseq-intro-content">Content</h2>
                             <ul>
-                                <li><Link onClick={(e)=>{e.preventDefault(); window.scrollTo({top: document.getElementById('objective').offsetTop-(screen.height*20/100) })}} to="/dashboard/ckd/intro#medseq-objective">Medication Sequencing and it's Objective</Link></li>
-                                <li><Link onClick={(e)=>{e.preventDefault(); window.scrollTo({top: document.getElementById('patient-selection').offsetTop-(screen.height*20/100) })}} to="/dashboard/ckd/intro#medseq-inclusion-criteria">Inclusion Criteria</Link></li>
-                                <li><Link onClick={(e)=>{e.preventDefault(); window.scrollTo({top: document.getElementById('study-design').offsetTop-(screen.height*20/100) })}} to="/dashboard/ckd/intro#medseq-exclusion-criteria">Exclusion Criteria</Link></li>
-                                <li><Link onClick={(e)=>{e.preventDefault(); window.scrollTo({top: document.getElementById('oacdb').offsetTop-(screen.height*20/100) })}} to="/dashboard/ckd/intro#medseq-study-design">Study Design</Link></li>
+                                <li><Link onClick={(e)=>{e.preventDefault(); window.scrollTo({top: document.getElementById('medseq-objective').offsetTop-(screen.height*20/100) })}} to="/dashboard/ckd/intro#medseq-objective">Medication Sequencing and it's Objective</Link></li>
+                                <li><Link onClick={(e)=>{e.preventDefault(); window.scrollTo({top: document.getElementById('medseq-inclusion-criteria').offsetTop-(screen.height*20/100) })}} to="/dashboard/ckd/intro#medseq-inclusion-criteria">Inclusion Criteria</Link></li>
+                                <li><Link onClick={(e)=>{e.preventDefault(); window.scrollTo({top: document.getElementById('medseq-exclusion-criteria').offsetTop-(screen.height*20/100) })}} to="/dashboard/ckd/intro#medseq-exclusion-criteria">Exclusion Criteria</Link></li>
+                                <li><Link onClick={(e)=>{e.preventDefault(); window.scrollTo({top: document.getElementById('medseq-study-design').offsetTop-(screen.height*20/100) })}} to="/dashboard/ckd/intro#medseq-study-design">Study Design</Link></li>
                             </ul>
                         </div>
                         <div style={{display:"inline-block"}} className="col-md-5 pt-3 pt-md-0 text-center">
