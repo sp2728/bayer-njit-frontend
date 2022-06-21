@@ -16,10 +16,22 @@ export class UserProfile extends React.Component {
             oldPassword: "",
             newPassword: "",
             confirmPassword: "",
+            displayAbout: false,
         }
         this.onSubmit = this.onSubmit.bind(this);
         this.logoutRerender = this.logoutRerender.bind(this);
+        this.clickDetect = this.clickDetect.bind(this);
     }
+
+    clickDetect(event){
+        if(!$(event.target).closest(".model-box").length){
+            this.setState({displayAbout: false})
+            try{
+                document.getElementsByClassName("about-model")[0].removeEventListener("click", this.clickDetect);
+            }catch(err){}
+        }
+    }
+
     logoutRerender(){
         window.location.href = "/";
     }
@@ -55,7 +67,39 @@ export class UserProfile extends React.Component {
     render(){
         return (
             <div className="dashboard user-profile">
-                <NavigationBar logoutRerender={()=>this.logoutRerender()} />
+                <NavigationBar logoutRerender={()=>this.logoutRerender()} showAboutHandler={()=>{
+                    this.setState({displayAbout:true},()=>{
+                        document.getElementsByClassName("about-model")[0].addEventListener("click", this.clickDetect);
+                    })
+                }}/>
+                {
+                        (this.state.displayAbout)?(
+                            <div style={{zIndex: 99}} className="about-model">
+                                <div className="model-box-container">
+                                    <div style={{position: "relative"}} className="model-box p-3">
+                                        <div style={{position: "absolute", right: 20, top: 10, fontSize: 20}}>
+                                            <button onClick={()=>{this.setState({displayAbout: false})}} style={{outline: "none", border: "none", background: "none"}}>
+                                                <i className="fa fa-times"></i>
+                                            </button>
+                                        </div>
+                                        <h2 style={{fontSize: "170%", fontFamily:"Montserrat, san-serif", fontWeight: 500}} className="text-center">About</h2>
+                                        <div className="hr-line"></div>
+                                        <p style={{textAlign:"justify"}}>
+
+                                            <strong>CKD Population Navigator</strong> is an internal research tool. CKD Population Navigator is a data visualization and analytics tool based upon the results of a retrospective, cross-sectional analysis of the Optum Administrative 
+                                            claims database to describe the <strong>Chronic Kidney Disease</strong> and <strong>Type 2 Diabetes</strong> patient landscape within the database in the year 2019. The tool allows users to explore 
+                                            the following characteristics in the type 2 diabetes (T2D), chronic kidney disease (CKD), and CKD and T2D populations: demographic, clinical (i.e., events, comorbidities), 
+                                            medication use, and kidney labs.
+                                        </p>
+                                        <div className="hr-line"></div>
+                                        <p className="text-center">
+                                            <small>&copy; Copyright 2022 Bayer | All rights reserved</small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        ):""
+                    }
                 <div className="container-fluid py-5 mb-5">
                     <div className="row">
                         <div className="col-12">

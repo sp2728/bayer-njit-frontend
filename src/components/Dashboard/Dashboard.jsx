@@ -232,6 +232,16 @@ class Dashboard extends React.Component{
         }
         this.checkAccess = this.checkAccess.bind(this);
         this.logoutRerender = this.logoutRerender.bind(this);
+        this.clickDetect = this.clickDetect.bind(this);
+    }
+
+    clickDetect(event){
+        if(!$(event.target).closest(".model-box").length){
+            this.setState({displayAbout: false})
+            try{
+                document.getElementsByClassName("about-model")[0].removeEventListener("click", this.clickDetect);
+            }catch(err){}
+        }
     }
 
     checkAccess(){
@@ -248,8 +258,17 @@ class Dashboard extends React.Component{
             isLoading: false,
         });
     }
+    
+    componentWillUnmount(){
+        try{
+            if(this.state.displayAbout){
+                document.getElementsByClassName("about-model")[0].removeEventListener("click", this.clickDetect);
+            }
+        }catch(err){}
+    }
 
     render(){
+
         if(this.state.isLoading){
             this.checkAccess();
             return (
@@ -265,10 +284,14 @@ class Dashboard extends React.Component{
         } else if(!this.state.isLoading && this.state.access){
             return (
                 <div className="dashboard">
-                    <NavigationBar logoutRerender={this.logoutRerender} showAboutHandler={()=>{this.setState({displayAbout:true})}} />
+                    <NavigationBar logoutRerender={this.logoutRerender} showAboutHandler={()=>{
+                        this.setState({displayAbout:true},()=>{
+                            document.getElementsByClassName("about-model")[0].addEventListener("click", this.clickDetect);
+                        })
+                    }} />
                     {
                         (this.state.displayAbout)?(
-                            <div className="about-model">
+                            <div style={{zIndex: 99}} className="about-model">
                                 <div className="model-box-container">
                                     <div style={{position: "relative"}} className="model-box p-3">
                                         <div style={{position: "absolute", right: 20, top: 10, fontSize: 20}}>

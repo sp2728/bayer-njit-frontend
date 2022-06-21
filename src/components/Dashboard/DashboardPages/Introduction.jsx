@@ -29,6 +29,9 @@ export const Introduction = ()=>{
                             <li className={introPageIndex==1?"active":""}>
                                 <Link onClick={(e)=>{setIntroPageIndex(1)}} to="/dashboard/ckd/intro/medseq">About Medication Sequencing</Link>
                             </li>
+                            <li className={introPageIndex==2?"active":""}>
+                                <Link onClick={(e)=>{setIntroPageIndex(2)}} to="/dashboard/ckd/intro/kidneytesting">About Kidney Testing</Link>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -39,6 +42,8 @@ export const Introduction = ()=>{
                 <Route exact path="/dashboard/ckd" component={PatientFinderIntro} />
                 <Route exact path="/dashboard/ckd/intro" component={PatientFinderIntro} />
                 <Route exact path="/dashboard/ckd/intro/patientfinder" component={PatientFinderIntro}/>
+                <Route exact path="/dashboard/ckd/intro/medseq" component={MedicalSequencingIntro} />
+                <Route exact path="/dashboard/ckd/intro/kidneytesting"><UnderMaintainance showNav={false}/></Route>
                 <Route exact path="/dashboard/ckd/intro/medseq" component={MedicalSequencingIntro} />
                 <Route path="*"><Redirect to="/not-found" /></Route>
             </Switch>
