@@ -34,7 +34,7 @@ const Login = (props)=>{
     const loginCKDNavigator = (e)=>{
         e.preventDefault();
 
-        /* TODO : Axios Login API Post: Login here...*/
+        /* Axios Login API Post: Login here...*/
         login(username, password).then((response)=>{
             if(response.data.success===1){ /* On Failure display error message */
                 props.setMessage(2, response.data.message);
@@ -51,23 +51,15 @@ const Login = (props)=>{
             }
             
         }).catch((error)=>{
-
-            /** TODO: REPLACE CONSOLE.LOG - send error log reports to server or to local storage cache file after presenting pop-up for user's consent AS SUGGESTED BELOW */
-
             try{
                 if(error.response.data.success===0){
-                    props.setMessage(-1, error.response.data.message);    
+                    props.setMessage(-1, error.response.data.message);
+                } else {
+                    props.setMessage(-2, "A technical error has been detected!. Please Try again later.", error);
                 }
-
-                // console.log(error.response.data); // TODO: show a pop-up for user's consent to send error data to server
-
             } catch(err) {
-                //console.log(error); // TODO: show a pop-up for user's consent to send error data to server
-
-                props.setMessage(-1, "A technical error has been detected!. Please Try again later.");
+                props.setMessage(-2, "A technical error has been detected!. Please Try again later.", error);
             }
-            
-            
         });
     }
 
@@ -142,7 +134,7 @@ class SignUp extends React.Component {
     */
     isUsernameUnique(username){
         /* Asynchronous API call to Patient Finder Database for User */
-        return true; /* TODO : Replace this with API call */
+        return true; /* TODO: Replace this with API call */
     }
 
     /** Checks if the form is completed or not and enables login button upon completion or disable upon incompletion 
@@ -167,7 +159,7 @@ class SignUp extends React.Component {
             if(response.data.success===1){ /* On Failure display error message */
                 this.props.setMessage(2, response.data.message);
 
-                // TODO: Store response.data.userData to the cookie and redirect to dashboard
+                // Store response.data.userData to the cookie and redirect to dashboard
                 Cookies.set("userid", response.data.userData.userid,{path:'/'});
                 Cookies.set("fullName", response.data.userData.fullName,{path:'/'});
                 Cookies.set("email", response.data.userData.email,{path:'/'});
@@ -180,23 +172,15 @@ class SignUp extends React.Component {
             }
             
         }).catch((error)=>{
-
-            /** TODO: REPLACE CONSOLE.LOG - send error log reports to server or to local storage cache file after presenting pop-up for user's consent AS SUGGESTED BELOW */
-
             try{
                 if(error.response.data.success===0){
                     this.props.setMessage(-1, error.response.data.message);
+                } else {
+                    this.props.setMessage(-2, "A technical error has been detected!. Please Try again later.", error);
                 }
-
-                // console.log(error.response.data); // TODO: show a pop-up for user's consent to send error data to server
-
             } catch(err) {
-                //console.log(error); // TODO: show a pop-up for user's consent to send error data to server
-
-                this.props.setMessage(-1, "There seem's to be a technical error somewhere. Please Try again later!");
+                this.props.setMessage(-2, "A technical error has been detected!. Please Try again later.", error);
             }
-            
-            
         });
 
     }
@@ -350,7 +334,7 @@ const ForgetMyPassword = (props)=>{
     const sendResetPasswordLink = (e)=>{
         e.preventDefault();
 
-        /** TODO : Reset Password Link send - Use axios to call backend API that performs mailing a link to user's email for password reset */
+        /** TODO: Reset Password Link send - Use axios to call backend API that performs mailing a link to user's email for password reset */
         
     }
 
@@ -396,6 +380,10 @@ class Authentication extends React.Component {
             messageText: "",
             isLoading: true,
             access: false,
+            showErrorBox: false,
+            isReportSent: false,
+            sendReportSuccess: false,
+            errorObj: {}
         }
 
         this.setActiveFormTab = this.setActiveFormTab.bind(this);
@@ -418,11 +406,13 @@ class Authentication extends React.Component {
     }
 
     /** Enables and display a pop-up message on top of the authentication form */
-    setMessage(messageState, messageText){
+    setMessage(messageState, messageText, errorReportObj={}){
         // Show info message
         this.setState({
-            messageState: messageState,
+            messageState: (messageState===-2)?-1:messageState,
             messageText: messageText,
+            errorObj: JSON.stringify(errorReportObj),
+            showErrorBox: messageState===-2?true:false
         });
 
         // Make the message disappear after 30 seconds
@@ -432,9 +422,25 @@ class Authentication extends React.Component {
     checkAccess(){
         checkUserAccess(Cookies.get('userid'), Cookies.get('authToken')).then((response)=>{
             this.setState({access: response.data.access===1, isLoading:false})
-        }).catch((err)=>{
-            this.setState({access: false, isLoading:false})
+        }).catch((error)=>{
+            this.setState({access: false, isLoading:false}, ()=>{
+                try{
+                    if(error.response.data.success===0){
+                        this.setMessage(-1, error.response.data.message);
+                    } else {
+                        this.setMessage(-2, "A technical error has been detected!. Please Try again later.", error);
+                    }
+                } catch(err) {
+                    this.setMessage(-2, "A technical error has been detected!. Please Try again later.", error);
+                }
+            });
         });
+    }
+
+    sendReport(){
+        console.log("Current Error Obj: \n", this.state.errorObj);
+        /* TODO: Semd Error Obj here ... */
+        return true; // Return success of sending the object to API
     }
 
     render(){
@@ -466,6 +472,67 @@ class Authentication extends React.Component {
 
         return (
             <div className='authentication'>
+                
+                {
+                    this.state.showErrorBox
+                    ?   <div style={{
+                            position: "fixed",
+                            display: "flex",
+                            width: "100vw",
+                            height: "100vh",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            backgroundColor: "rgba(0,0,0,0.75)",
+                            zIndex: 999
+                        }} className="p-1">
+                            <div className='bg-light px-3 pt-2 pb-4'>
+                                <div className='text-end'>
+                                    <button style={{fontSize: "18px", fontWeight: "bold"}} className="btn btn-outline-none text-danger p-1 px-2" onClick={()=>{
+                                        this.setState({
+                                            showErrorBox: false
+                                        });
+                                    }}>x</button>
+                                </div>
+                                {
+                                    !this.state.isReportSent
+                                      ? (
+                                        <div>
+                                            <p>The application has detected a technical error or crash on your side!</p>
+                                            <p><strong>Do you want to send the error/crash report to the developer?</strong></p>
+                                            <div className='text-center'>
+                                                <button onClick={()=>{
+                                                    const success = this.sendReport();
+                                                    this.setState({
+                                                        isReportSent: true,
+                                                        sendReportSuccess: !success
+                                                    });
+                                                }} className='m-3 px-4 btn btn-primary'>Send Report</button>
+                                                <button className='m-3 px-4 btn btn-danger' onClick={()=>{
+                                                    this.setState({
+                                                        showErrorBox: false
+                                                    });
+                                                }}>Cancel</button>
+                                            </div>
+                                        </div>
+                                      ) : (
+                                        <div className="px-3 py-2">
+                                            {this.state.sendReportSuccess?<p className="text-success">Your report is sent successfully</p>:<p className='text-danger'>Something went wrong while sending the report. Please try again later!!</p>}
+                                            <div className='text-center'>
+                                                <button className='m-3 px-4 btn btn-danger' onClick={()=>{
+                                                    this.setState({
+                                                        showErrorBox: false
+                                                    });
+                                                }}>Close</button>
+                                            </div>
+                                        </div>
+                                      )
+                                }
+                            </div>
+                        </div>
+                    :   ""
+                }
+
+
                 <Background />
                 <NavigationBar />
                 <div className="auth-content container-fluid">
